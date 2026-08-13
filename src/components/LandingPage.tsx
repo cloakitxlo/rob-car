@@ -8,6 +8,8 @@ interface LandingPageProps {
   onOpenTerms: () => void;
 }
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 export const LandingPage: React.FC<LandingPageProps> = ({
   onGetStarted,
   onOpenPrivacy,
@@ -23,32 +25,32 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   }, []);
 
   return (
-    <div className="landing-root min-h-screen text-slate-100">
+    <div className="landing-root min-h-screen">
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-[#070b12]/90 backdrop-blur-xl border-b border-white/10'
+            ? 'bg-[#110e08]/92 backdrop-blur-xl border-b border-white/[0.08]'
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 sm:h-[4.5rem] flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2.5 group">
-            <span className="w-9 h-9 rounded-xl trust-gradient flex items-center justify-center">
-              <Shield className="w-4 h-4 text-white" />
+            <span className="landing-mark">
+              <Shield className="w-4 h-4" />
             </span>
-            <span className="landing-display text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors">
+            <span className="landing-display text-lg sm:text-xl text-white group-hover:text-[#ccff00] transition-colors duration-300">
               Robin Card
             </span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
-            <a href="#how" className="hover:text-white transition-colors">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#a09c8f]">
+            <a href="#how" className="hover:text-white transition-colors duration-300">
               How it works
             </a>
-            <a href="#security" className="hover:text-white transition-colors">
+            <a href="#security" className="hover:text-white transition-colors duration-300">
               Security
             </a>
-            <a href="#kyc" className="hover:text-white transition-colors">
+            <a href="#kyc" className="hover:text-white transition-colors duration-300">
               No KYC
             </a>
           </nav>
@@ -56,7 +58,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <button
             type="button"
             onClick={onGetStarted}
-            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-sm font-bold transition-all active:scale-[0.98]"
+            className="rh-cta px-4 sm:px-5 py-2.5 text-sm"
           >
             Get Started
             <ArrowRight className="w-4 h-4" />
@@ -72,16 +74,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <motion.div
             className="landing-hero-card-wrap pointer-events-none order-1 lg:order-2"
             aria-hidden="true"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
+            transition={{ duration: 1, ease, delay: 0.16 }}
           >
             <div className="landing-hero-card-face">
               <div className="landing-hero-card-shine" />
               <div className="landing-hero-card-top">
                 <div className="landing-hero-card-brand">
                   <span className="landing-hero-card-brand-mark">
-                    <Shield className="w-3.5 h-3.5 text-white" />
+                    <Shield className="w-3.5 h-3.5" />
                   </span>
                   <span>Robin Card</span>
                 </div>
@@ -119,32 +121,32 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, ease }}
             className="max-w-2xl space-y-6 order-2 lg:order-1 relative z-10"
           >
-            <p className="landing-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+            <p className="landing-display text-4xl sm:text-6xl lg:text-7xl text-white leading-[1.05]">
               Robin Card
             </p>
-            <h1 className="text-xl sm:text-2xl font-semibold text-slate-100 leading-snug">
+            <h1 className="text-xl sm:text-2xl font-medium text-[#e8e5dc] leading-snug tracking-tight">
               Spend your crypto like cash — no KYC required.
             </h1>
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg text-[#a09c8f] leading-relaxed max-w-xl">
               Load USDT into your vault, activate your card, and pay with confidence. Built for people who want crypto utility without the paperwork maze.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 type="button"
                 onClick={onGetStarted}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-sm font-extrabold transition-all active:scale-[0.98]"
+                className="rh-cta px-6 py-3.5 text-sm"
               >
                 Get Started
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a
                 href="#how"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-slate-100 text-sm font-bold transition-all"
+                className="rh-cta-ghost px-6 py-3.5 text-sm"
               >
                 See how it works
               </a>
@@ -153,19 +155,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      <section id="how" className="relative py-20 sm:py-28 border-t border-white/5">
+      <section id="how" className="landing-section-light relative py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.7, ease }}
             className="max-w-xl mb-12 sm:mb-16"
           >
-            <h2 className="landing-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <h2 className="landing-display text-3xl sm:text-4xl text-[#110e08]">
               Three steps to real-world crypto spending
             </h2>
-            <p className="mt-3 text-slate-400 text-base leading-relaxed">
+            <p className="mt-3 text-[#5c5648] text-base leading-relaxed">
               No bank waitlists. Create an account, fund your vault, and your card is ready when your deposit clears.
             </p>
           </motion.div>
@@ -190,17 +192,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             ].map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                transition={{ duration: 0.65, delay: i * 0.1, ease }}
                 className="space-y-3"
               >
-                <div className="w-11 h-11 rounded-xl bg-blue-600/15 border border-blue-500/25 text-blue-300 flex items-center justify-center">
+                <div className="w-11 h-11 rounded-full bg-[#110e08] text-[#ccff00] flex items-center justify-center">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-bold text-white">{item.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{item.text}</p>
+                <h3 className="text-lg font-semibold text-[#110e08] tracking-tight">{item.title}</h3>
+                <p className="text-sm text-[#5c5648] leading-relaxed">{item.text}</p>
               </motion.div>
             ))}
           </div>
@@ -209,7 +211,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <button
               type="button"
               onClick={onGetStarted}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-sm font-extrabold transition-all"
+              className="rh-cta px-6 py-3.5 text-sm"
             >
               Get Started
               <ArrowRight className="w-4 h-4" />
@@ -218,28 +220,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      <section id="kyc" className="relative py-20 sm:py-28 border-t border-white/5 landing-band">
+      <section id="kyc" className="relative py-20 sm:py-28 landing-band">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.7, ease }}
             className="space-y-4"
           >
-            <h2 className="landing-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <h2 className="landing-display text-3xl sm:text-4xl text-white">
               Use crypto on a card — without KYC friction
             </h2>
-            <p className="text-slate-300 text-base leading-relaxed">
+            <p className="text-[#e8e5dc] text-base leading-relaxed">
               Robin Card is built for speed and privacy-minded access. Start with your account, deposit crypto, and spend — without uploading endless identity documents to get moving.
             </p>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-[#a09c8f] text-sm leading-relaxed">
               You stay in control of your funds flow: deposit, track balances, manage card controls, and reach support when you need help.
             </p>
             <button
               type="button"
               onClick={onGetStarted}
-              className="mt-2 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-sm font-extrabold transition-all"
+              className="mt-2 rh-cta px-6 py-3.5 text-sm"
             >
               Get Started
               <ArrowRight className="w-4 h-4" />
@@ -247,10 +249,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </motion.div>
 
           <motion.ul
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.7, delay: 0.08, ease }}
             className="space-y-4"
           >
             {[
@@ -261,7 +263,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             ].map((line) => (
               <li
                 key={line}
-                className="flex gap-3 text-sm text-slate-200 leading-relaxed border-l-2 border-blue-500/50 pl-4"
+                className="flex gap-3 text-sm text-[#e8e5dc] leading-relaxed border-l-2 border-[#ccff00] pl-4"
               >
                 {line}
               </li>
@@ -270,23 +272,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      <section id="security" className="relative py-20 sm:py-28 border-t border-white/5">
+      <section id="security" className="landing-section-light relative py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.7, ease }}
             className="max-w-2xl mb-12"
           >
-            <div className="inline-flex items-center gap-2 text-blue-300 mb-3">
+            <div className="inline-flex items-center gap-2 text-[#110e08] mb-3">
               <Lock className="w-5 h-5" />
-              <span className="text-xs font-extrabold uppercase tracking-widest">Safe &amp; secure</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.16em]">Safe &amp; secure</span>
             </div>
-            <h2 className="landing-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <h2 className="landing-display text-3xl sm:text-4xl text-[#110e08]">
               Designed so your crypto feels protected — and usable
             </h2>
-            <p className="mt-3 text-slate-400 text-base leading-relaxed">
+            <p className="mt-3 text-[#5c5648] text-base leading-relaxed">
               Encrypted account access, vault-style balances, freeze controls, and clear activity history. Spend with less anxiety and more clarity.
             </p>
           </motion.div>
@@ -308,38 +310,38 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             ].map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.06 }}
-                className="p-6 rounded-2xl border border-white/10 bg-white/[0.03]"
+                transition={{ duration: 0.6, delay: i * 0.08, ease }}
+                className="p-6 rounded-[28px] border border-[#d8d2c2] bg-white"
               >
-                <h3 className="font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{item.text}</p>
+                <h3 className="font-semibold text-[#110e08] mb-2 tracking-tight">{item.title}</h3>
+                <p className="text-sm text-[#5c5648] leading-relaxed">{item.text}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="relative py-20 sm:py-24 border-t border-white/5">
+      <section className="relative py-20 sm:py-24 bg-black">
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7, ease }}
           className="max-w-6xl mx-auto px-5 sm:px-8 text-center space-y-6"
         >
-          <h2 className="landing-display text-3xl sm:text-5xl font-bold text-white tracking-tight">
+          <h2 className="landing-display text-3xl sm:text-5xl text-white">
             Ready to put crypto in your everyday life?
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">
+          <p className="text-[#a09c8f] max-w-xl mx-auto">
             Open your account, fund your vault, and start using Robin Card — simple, secure, and built without KYC bottlenecks.
           </p>
           <button
             type="button"
             onClick={onGetStarted}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-base font-extrabold transition-all active:scale-[0.98]"
+            className="rh-cta px-8 py-4 text-base"
           >
             Get Started
             <ArrowRight className="w-5 h-5" />
@@ -347,35 +349,35 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </motion.div>
       </section>
 
-      <footer className="border-t border-white/10 bg-[#05070c]">
+      <footer className="border-t border-white/[0.08] bg-black">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="sm:col-span-2 space-y-3">
             <div className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg trust-gradient flex items-center justify-center">
-                <Shield className="w-4 h-4 text-white" />
+              <span className="landing-mark landing-mark--sm">
+                <Shield className="w-4 h-4" />
               </span>
-              <span className="landing-display font-bold text-white">Robin Card</span>
+              <span className="landing-display text-white">Robin Card</span>
             </div>
-            <p className="text-sm text-slate-400 max-w-md leading-relaxed">
+            <p className="text-sm text-[#a09c8f] max-w-md leading-relaxed">
               A modern crypto card experience — load digital assets, spend with ease, and manage everything from one secure portal.
             </p>
           </div>
 
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Product</p>
-            <ul className="space-y-2 text-sm text-slate-300">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#6a6760] mb-3">Product</p>
+            <ul className="space-y-2 text-sm text-[#e8e5dc]">
               <li>
-                <a href="#how" className="hover:text-white transition-colors">
+                <a href="#how" className="hover:text-[#ccff00] transition-colors duration-300">
                   How it works
                 </a>
               </li>
               <li>
-                <a href="#security" className="hover:text-white transition-colors">
+                <a href="#security" className="hover:text-[#ccff00] transition-colors duration-300">
                   Security
                 </a>
               </li>
               <li>
-                <button type="button" onClick={onGetStarted} className="hover:text-white transition-colors">
+                <button type="button" onClick={onGetStarted} className="hover:text-[#ccff00] transition-colors duration-300">
                   Get Started
                 </button>
               </li>
@@ -383,15 +385,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Legal</p>
-            <ul className="space-y-2 text-sm text-slate-300">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#6a6760] mb-3">Legal</p>
+            <ul className="space-y-2 text-sm text-[#e8e5dc]">
               <li>
-                <button type="button" onClick={onOpenPrivacy} className="hover:text-white transition-colors text-left">
+                <button type="button" onClick={onOpenPrivacy} className="hover:text-[#ccff00] transition-colors duration-300 text-left">
                   Privacy Policy
                 </button>
               </li>
               <li>
-                <button type="button" onClick={onOpenTerms} className="hover:text-white transition-colors text-left">
+                <button type="button" onClick={onOpenTerms} className="hover:text-[#ccff00] transition-colors duration-300 text-left">
                   Terms &amp; Conditions
                 </button>
               </li>
@@ -399,8 +401,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
         </div>
 
-        <div className="border-t border-white/10">
-          <div className="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-slate-500">
+        <div className="border-t border-white/[0.08]">
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-[#6a6760]">
             <p>© {new Date().getFullYear()} Robin Card. All rights reserved.</p>
             <p>By using this site you agree to our Terms and acknowledge our Privacy Policy.</p>
           </div>

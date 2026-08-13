@@ -229,24 +229,24 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   return (
     <div className="space-y-8 animate-in fade-in duration-200">
       {/* Top Banner / Admin Master Controls */}
-      <div className="glass-card border border-rose-500/30 rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-slate-950 via-slate-900 to-rose-950/40 relative overflow-hidden shadow-2xl">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="glass-card border border-[#ff5000]/30 rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#110e08] via-[#1c180d] to-[#ff5000]/15 relative overflow-hidden shadow-2xl">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#ff5000]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
           <div className="space-y-2">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-2xl bg-rose-500/10 text-rose-400 border border-rose-500/30">
+              <div className="p-2.5 rounded-2xl bg-[#ff5000]/10 text-[#ff5000] border border-[#ff5000]/30">
                 <ShieldAlert className="w-6 h-6" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="text-xl sm:text-2xl font-extrabold text-slate-100">
+                  <h1 className="dash-title text-xl sm:text-2xl text-[#faf7f0]">
                     Master Admin Control Vault
                   </h1>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-500/20 text-rose-400 border border-rose-500/30 uppercase tracking-widest">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#ff5000]/15 text-[#ff5000] border border-[#ff5000]/30 uppercase tracking-widest">
                     SUPERADMIN ACTIVE
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 font-medium">
+                <p className="text-xs text-[#a09c8f] font-medium">
                   Manage connected Web3 wallets, freeze/unfreeze user funds, and sweep liquidity reserves
                 </p>
               </div>
@@ -256,16 +256,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSelectedUserForNotice('all')}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 text-xs font-bold border border-purple-500/30 transition-all shadow-md"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#ccff00]/15 hover:bg-[#ccff00]/20 text-[#ccff00] text-xs font-bold border border-[#ccff00]/30 transition-all shadow-md"
             >
-              <Send className="w-3.5 h-3.5 text-purple-400" />
+              <Send className="w-3.5 h-3.5 text-[#ccff00]" />
               <span>Issue Notice / Broadcast</span>
             </button>
             <button
               onClick={onRefreshData}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-bold border border-white/10 transition-all"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] text-xs font-bold border border-white/10 transition-all"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-slate-400" />
+              <RefreshCw className="w-3.5 h-3.5 text-[#a09c8f]" />
               <span>Refresh Vault State</span>
             </button>
           </div>
@@ -273,36 +273,36 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
         {/* Master Metrics Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/10">
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-white/5 space-y-1">
-            <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Total Vault TVL</p>
-            <p className="text-2xl font-extrabold text-blue-400 font-mono">
+          <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+            <p className="text-[10px] uppercase font-semibold tracking-wider text-[#a09c8f]">Total Vault TVL</p>
+            <p className="text-2xl font-semibold text-[#ccff00] font-mono">
               ${totalTvlUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
-            <p className="text-[11px] text-slate-500 font-medium">Across all connected Web3 accounts</p>
+            <p className="text-[11px] text-[#6a6760] font-medium">Across all connected Web3 accounts</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-white/5 space-y-1">
-            <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Connected Accounts</p>
+          <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+            <p className="text-[10px] uppercase font-semibold tracking-wider text-[#a09c8f]">Connected Accounts</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-extrabold text-slate-100 font-mono">{users.length}</span>
-              <span className="text-xs text-emerald-400 font-bold">({activeCount} Active)</span>
+              <span className="text-2xl font-semibold text-[#faf7f0] font-mono">{users.length}</span>
+              <span className="text-xs text-[#ccff00] font-bold">({activeCount} Active)</span>
             </div>
-            <p className="text-[11px] text-slate-500 font-medium">Ethereum, BNB, Polygon, Arbitrum</p>
+            <p className="text-[11px] text-[#6a6760] font-medium">Ethereum, BNB, Polygon, Arbitrum</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-white/5 space-y-1">
-            <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Frozen Accounts</p>
+          <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+            <p className="text-[10px] uppercase font-semibold tracking-wider text-[#a09c8f]">Frozen Accounts</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-extrabold text-rose-400 font-mono">{frozenCount}</span>
-              <span className="text-xs text-rose-400 font-bold">Locked Funds</span>
+              <span className="text-2xl font-semibold text-[#ff5000] font-mono">{frozenCount}</span>
+              <span className="text-xs text-[#ff5000] font-bold">Locked Funds</span>
             </div>
-            <p className="text-[11px] text-slate-500 font-medium">Compliance & Risk Suspensions</p>
+            <p className="text-[11px] text-[#6a6760] font-medium">Compliance & Risk Suspensions</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-white/5 space-y-1">
-            <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Master Treasury Reserve</p>
-            <p className="text-2xl font-extrabold text-amber-400 font-mono">$1,250,000.00</p>
-            <p className="text-[11px] text-slate-500 font-medium">Liquidity reserve coverage</p>
+          <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-1">
+            <p className="text-[10px] uppercase font-semibold tracking-wider text-[#a09c8f]">Master Treasury Reserve</p>
+            <p className="text-2xl font-semibold text-amber-400 font-mono">$1,250,000.00</p>
+            <p className="text-[11px] text-[#6a6760] font-medium">Liquidity reserve coverage</p>
           </div>
         </div>
       </div>
@@ -311,28 +311,28 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <div className="glass-card border border-white/10 rounded-3xl p-6 sm:p-8 space-y-5">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-white/10 pb-5">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20">
+            <div className="p-2 rounded-xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/25">
               <Headphones className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-extrabold text-base text-slate-100">User Support Tickets</h2>
-              <p className="text-xs text-slate-400 font-medium">
+              <h2 className="dash-title text-base text-[#faf7f0]">User Support Tickets</h2>
+              <p className="text-xs text-[#a09c8f] font-medium">
                 See which user raised what issue and reply on the same ticket
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
+            <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
               {openTicketsCount} open
             </span>
-            <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-slate-500/15 text-slate-300 border border-white/10">
+            <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-slate-500/15 text-[#e8e5dc] border border-white/10">
               {supportTickets.length} total
             </span>
           </div>
         </div>
 
         {supportTickets.length === 0 ? (
-          <p className="text-xs text-slate-500 text-center py-8">No support tickets yet.</p>
+          <p className="text-xs text-[#6a6760] text-center py-8">No support tickets yet.</p>
         ) : (
           <div className="space-y-3 max-h-[560px] overflow-y-auto pr-1">
             {supportTickets.map((ticket) => {
@@ -340,7 +340,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               return (
                 <div
                   key={ticket.id}
-                  className="rounded-2xl border border-white/10 bg-slate-950/50 overflow-hidden"
+                  className="rounded-2xl border border-white/10 bg-[#0a0805]/50 overflow-hidden"
                 >
                   <button
                     type="button"
@@ -350,29 +350,29 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                       <div className="min-w-0 space-y-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-[10px] font-mono text-slate-500">{ticket.id}</span>
+                          <span className="text-[10px] font-mono text-[#6a6760]">{ticket.id}</span>
                           <span
-                            className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider border ${
+                            className={`px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider border ${
                               ticket.status === 'answered'
-                                ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+                                ? 'bg-emerald-500/15 text-[#ccff00] border-[#ccff00]/30'
                                 : ticket.status === 'closed'
-                                ? 'bg-slate-500/15 text-slate-400 border-slate-500/30'
+                                ? 'bg-slate-500/15 text-[#a09c8f] border-slate-500/30'
                                 : 'bg-amber-500/15 text-amber-400 border-amber-500/30'
                             }`}
                           >
                             {ticket.status}
                           </span>
                         </div>
-                        <p className="text-xs font-extrabold text-slate-100">
+                        <p className="text-xs font-semibold text-[#faf7f0]">
                           {ticket.fullName}{' '}
-                          <span className="font-medium text-slate-400">· {ticket.email}</span>
+                          <span className="font-medium text-[#a09c8f]">· {ticket.email}</span>
                         </p>
-                        <p className="text-xs text-slate-300 line-clamp-2">{ticket.description}</p>
-                        <p className="text-[10px] text-slate-500">
+                        <p className="text-xs text-[#e8e5dc] line-clamp-2">{ticket.description}</p>
+                        <p className="text-[10px] text-[#6a6760]">
                           {new Date(ticket.createdAt).toLocaleString()}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1.5 text-[11px] text-blue-400 font-bold shrink-0">
+                      <div className="flex items-center gap-1.5 text-[11px] text-[#ccff00] font-bold shrink-0">
                         <MessageSquare className="w-3.5 h-3.5" />
                         {ticket.messages.length} msgs
                       </div>
@@ -380,10 +380,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   </button>
 
                   {open && (
-                    <div className="border-t border-white/10 p-4 space-y-4 bg-slate-950/40">
+                    <div className="border-t border-white/10 p-4 space-y-4 bg-black/30">
                       {ticket.screenshotDataUrl && (
                         <div>
-                          <p className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                          <p className="text-[10px] font-semibold text-[#6a6760] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                             <ImageIcon className="w-3.5 h-3.5" /> Screenshot
                           </p>
                           <img
@@ -395,7 +395,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       )}
 
                       <div className="space-y-2">
-                        <p className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">
+                        <p className="text-[10px] font-semibold text-[#6a6760] uppercase tracking-wider">
                           Conversation
                         </p>
                         {ticket.messages.map((msg) => (
@@ -403,15 +403,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             key={msg.id}
                             className={`rounded-xl p-3 border text-xs ${
                               msg.authorRole === 'admin'
-                                ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-100'
-                                : 'bg-slate-900/80 border-white/10 text-slate-300'
+                                ? 'bg-[#ccff00]/10 border-emerald-500/25 text-emerald-100'
+                                : 'bg-[#1c180d]/80 border-white/10 text-[#e8e5dc]'
                             }`}
                           >
                             <div className="flex justify-between gap-2 mb-1">
-                              <span className="font-extrabold">
+                              <span className="font-semibold">
                                 {msg.authorRole === 'admin' ? 'Admin Reply' : msg.authorName}
                               </span>
-                              <span className="text-[10px] text-slate-500">
+                              <span className="text-[10px] text-[#6a6760]">
                                 {new Date(msg.createdAt).toLocaleString()}
                               </span>
                             </div>
@@ -421,7 +421,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">
+                        <label className="text-[10px] font-semibold text-[#6a6760] uppercase tracking-wider">
                           Reply to this user
                         </label>
                         <textarea
@@ -430,14 +430,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             setReplyDrafts((prev) => ({ ...prev, [ticket.id]: e.target.value }))
                           }
                           rows={3}
-                          className="w-full px-3 py-2.5 rounded-xl bg-slate-950/70 border border-white/10 text-xs text-slate-100 focus:outline-none focus:border-rose-500/40 resize-y"
+                          className="w-full px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-[#faf7f0] focus:outline-none focus:border-[#ff5000]/40 resize-y"
                           placeholder="Type your reply for this ticket..."
                         />
                         <button
                           type="button"
                           disabled={replyingTicketId === ticket.id || !(replyDrafts[ticket.id] || '').trim()}
                           onClick={() => handleReplyTicket(ticket.id)}
-                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-extrabold disabled:opacity-50 transition-all"
+                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#ff5000] hover:bg-rose-500 text-white text-xs font-semibold disabled:opacity-50 transition-all"
                         >
                           <SendHorizontal className="w-3.5 h-3.5" />
                           {replyingTicketId === ticket.id ? 'Sending...' : 'Send Reply'}
@@ -456,12 +456,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <div className="glass-card border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20">
+            <div className="p-2 rounded-xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/25">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-extrabold text-base text-slate-100">Connected User Accounts & Fund Controls</h2>
-              <p className="text-xs text-slate-400 font-medium">
+              <h2 className="dash-title text-base text-[#faf7f0]">Connected User Accounts & Fund Controls</h2>
+              <p className="text-xs text-[#a09c8f] font-medium">
                 View balances, execute administrative fund sweeps, and freeze/unfreeze account access
               </p>
             </div>
@@ -470,25 +470,25 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           {/* Search & Filter controls */}
           <div className="flex items-center gap-3 w-full md:w-auto">
             <div className="relative flex-1 md:w-64">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+              <Search className="w-4 h-4 text-[#a09c8f] absolute left-3 top-3" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search wallet address..."
-                className="w-full glass-input rounded-xl pl-9 pr-3 py-2 text-xs font-mono text-slate-200 focus:outline-none"
+                className="w-full glass-input rounded-xl pl-9 pr-3 py-2 text-xs font-mono text-[#e8e5dc] focus:outline-none"
               />
             </div>
 
-            <div className="flex items-center gap-1 bg-slate-950/80 p-1 rounded-xl border border-white/10">
+            <div className="flex items-center gap-1 bg-black/55 p-1 rounded-xl border border-white/10">
               {(['all', 'active', 'frozen'] as const).map((st) => (
                 <button
                   key={st}
                   onClick={() => setStatusFilter(st)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all ${
                     statusFilter === st
-                      ? 'trust-gradient text-white'
-                      : 'text-slate-400 hover:text-slate-200'
+                      ? 'trust-gradient'
+                      : 'text-[#a09c8f] hover:text-[#e8e5dc]'
                   }`}
                 >
                   {st}
@@ -502,7 +502,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-separate border-spacing-y-2">
             <thead>
-              <tr className="text-slate-400 font-extrabold uppercase tracking-wider text-[10px]">
+              <tr className="text-[#a09c8f] font-semibold uppercase tracking-wider text-[10px]">
                 <th className="px-4 py-2">Connected Address</th>
                 <th className="px-4 py-2">Network</th>
                 <th className="px-4 py-2">Total Funds (USD)</th>
@@ -516,22 +516,22 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               {filteredUsers.map((u) => (
                 <tr
                   key={u.id}
-                  className="bg-slate-950/60 hover:bg-slate-900/80 border border-white/5 rounded-2xl transition-all"
+                  className="bg-black/40 hover:bg-[#1c180d]/80 border border-white/5 rounded-2xl transition-all"
                 >
-                  <td className="px-4 py-3.5 rounded-l-2xl font-mono text-slate-200">
+                  <td className="px-4 py-3.5 rounded-l-2xl font-mono text-[#e8e5dc]">
                     <div className="flex flex-col gap-0.5">
                       <div className="flex items-center gap-2 font-bold text-xs">
-                        <span className="w-2 h-2 rounded-full bg-blue-400" />
+                        <span className="w-2 h-2 rounded-full bg-[#ccff00]" />
                         <span>{u.address.slice(0, 10)}...{u.address.slice(-6)}</span>
                       </div>
-                      <div className="text-[10px] text-rose-400 font-mono font-extrabold flex items-center gap-1">
+                      <div className="text-[10px] text-[#ff5000] font-mono font-semibold flex items-center gap-1">
                         <span>TRC20:</span>
                         <span>{u.trc20Address || u.address}</span>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3.5 font-bold text-slate-300">{u.network}</td>
-                  <td className="px-4 py-3.5 font-mono font-extrabold text-blue-400 text-sm">
+                  <td className="px-4 py-3.5 font-bold text-[#e8e5dc]">{u.network}</td>
+                  <td className="px-4 py-3.5 font-mono font-semibold text-[#ccff00] text-sm">
                     ${u.totalBalanceUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </td>
                   <td className="px-4 py-3.5">
@@ -539,7 +539,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       {u.assets.map((a) => (
                         <span
                           key={a.id}
-                          className="px-2 py-0.5 rounded-md bg-slate-900 border border-white/10 text-[10px] font-mono text-slate-300"
+                          className="px-2 py-0.5 rounded-md bg-[#1c180d] border border-white/10 text-[10px] font-mono text-[#e8e5dc]"
                         >
                           {a.balance.toFixed(2)} {a.symbol}
                         </span>
@@ -547,18 +547,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     </div>
                   </td>
                   <td className="px-4 py-3.5">
-                    <span className="capitalize font-extrabold text-slate-200 px-2.5 py-1 rounded-lg bg-slate-900 border border-white/10">
+                    <span className="capitalize font-semibold text-[#e8e5dc] px-2.5 py-1 rounded-lg bg-[#1c180d] border border-white/10">
                       {u.cardTier}
                     </span>
                   </td>
                   <td className="px-4 py-3.5">
                     {u.isFrozen ? (
-                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/30 font-extrabold w-fit">
+                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#ff5000]/10 text-[#ff5000] border border-[#ff5000]/30 font-semibold w-fit">
                         <Lock className="w-3 h-3" />
                         <span>FROZEN</span>
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-extrabold w-fit">
+                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/30 font-semibold w-fit">
                         <CheckCircle2 className="w-3 h-3" />
                         <span>ACTIVE</span>
                       </span>
@@ -571,7 +571,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         <button
                           onClick={() => onLoginAsUser(u)}
                           title="Login to this user account"
-                          className="px-2.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 font-extrabold transition-all flex items-center gap-1 text-[11px]"
+                          className="px-2.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 font-semibold transition-all flex items-center gap-1 text-[11px]"
                         >
                           <LogIn className="w-3 h-3" />
                           <span>Login As</span>
@@ -581,7 +581,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       {/* Issue Notice Button */}
                       <button
                         onClick={() => setSelectedUserForNotice(u)}
-                        className="px-2.5 py-1.5 rounded-xl bg-purple-600/10 hover:bg-purple-600/20 text-purple-400 border border-purple-500/30 font-extrabold transition-all flex items-center gap-1 text-[11px]"
+                        className="px-2.5 py-1.5 rounded-xl bg-[#ccff00]/10 hover:bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30 font-semibold transition-all flex items-center gap-1 text-[11px]"
                       >
                         <Send className="w-3 h-3" />
                         <span>Notice</span>
@@ -595,7 +595,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                           if (target) setTransferTargetUserId(target.id);
                         }}
                         title="Transfer funds directly to another user account"
-                        className="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-extrabold transition-all flex items-center gap-1 text-[11px]"
+                        className="px-2.5 py-1.5 rounded-xl bg-[#ccff00]/10 hover:bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30 font-semibold transition-all flex items-center gap-1 text-[11px]"
                       >
                         <SendHorizontal className="w-3 h-3" />
                         <span>Transfer</span>
@@ -604,7 +604,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       {/* Move Funds Button */}
                       <button
                         onClick={() => setSelectedUserForMove(u)}
-                        className="px-2.5 py-1.5 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 font-extrabold transition-all flex items-center gap-1 text-[11px]"
+                        className="px-2.5 py-1.5 rounded-xl bg-[#ccff00]/10 hover:bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30 font-semibold transition-all flex items-center gap-1 text-[11px]"
                       >
                         <ArrowRightLeft className="w-3 h-3" />
                         <span>Sweep</span>
@@ -613,10 +613,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       {/* Freeze / Unfreeze Toggle */}
                       <button
                         onClick={() => setSelectedUserForFreeze(u)}
-                        className={`px-3 py-1.5 rounded-xl font-extrabold transition-all flex items-center gap-1 ${
+                        className={`px-3 py-1.5 rounded-xl font-semibold transition-all flex items-center gap-1 ${
                           u.isFrozen
-                            ? 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                            : 'bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                            ? 'bg-[#ccff00]/10 hover:bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30'
+                            : 'bg-[#ff5000]/10 hover:bg-[#ff5000]/15 text-[#ff5000] border border-[#ff5000]/30'
                         }`}
                       >
                         {u.isFrozen ? (
@@ -649,14 +649,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-extrabold text-base text-slate-100">Dispatch Treasury Reserve</h3>
-              <p className="text-xs text-slate-400 font-medium">Credit user accounts directly from Admin Treasury</p>
+              <h3 className="font-semibold text-base text-[#faf7f0]">Dispatch Treasury Reserve</h3>
+              <p className="text-xs text-[#a09c8f] font-medium">Credit user accounts directly from Admin Treasury</p>
             </div>
           </div>
 
           <form onSubmit={handleDispatchLiquidity} className="space-y-4">
             <div>
-              <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1">
+              <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1">
                 Target User Wallet Address
               </label>
               <input
@@ -664,12 +664,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 value={dispatchTarget}
                 onChange={(e) => setDispatchTarget(e.target.value)}
                 placeholder="0x71C82910a39B21495c0234123984A018281989A2"
-                className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-slate-200 focus:outline-none"
+                className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-[#e8e5dc] focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1">
+              <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1">
                 Grant / Liquidity Amount (USDT)
               </label>
               <input
@@ -677,26 +677,26 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 value={dispatchAmount}
                 onChange={(e) => setDispatchAmount(e.target.value)}
                 placeholder="1000"
-                className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-slate-200 focus:outline-none"
+                className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-[#e8e5dc] focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1">
+              <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1">
                 Allocation Note / Justification
               </label>
               <input
                 type="text"
                 value={dispatchNote}
                 onChange={(e) => setDispatchNote(e.target.value)}
-                className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none"
+                className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#e8e5dc] focus:outline-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={isDispatching || !dispatchTarget || !dispatchAmount}
-              className="w-full py-3 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-xs font-extrabold transition-all shadow-lg flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+              className="w-full py-3 rounded-full trust-gradient hover:trust-gradient-hover text-xs font-semibold transition-all shadow-lg flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
             >
               {isDispatching ? (
                 <RefreshCw className="w-4 h-4 animate-spin" />
@@ -714,12 +714,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         <div className="lg:col-span-7 glass-card border border-white/10 rounded-3xl p-6 sm:p-8 space-y-5">
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+              <div className="p-2 rounded-xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/25">
                 <History className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-base text-slate-100">Admin Audit & Move Logs</h3>
-                <p className="text-xs text-slate-400 font-medium">Real-time record of all freeze & sweep events</p>
+                <h3 className="font-semibold text-base text-[#faf7f0]">Admin Audit & Move Logs</h3>
+                <p className="text-xs text-[#a09c8f] font-medium">Real-time record of all freeze & sweep events</p>
               </div>
             </div>
           </div>
@@ -728,28 +728,28 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             {adminLogs.map((log) => (
               <div
                 key={log.id}
-                className="p-3.5 rounded-2xl bg-slate-950/60 border border-white/5 space-y-1.5 text-xs"
+                className="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-1.5 text-xs"
               >
                 <div className="flex justify-between items-center">
                   <span
-                    className={`font-extrabold px-2 py-0.5 rounded-md uppercase text-[10px] ${
+                    className={`font-semibold px-2 py-0.5 rounded-md uppercase text-[10px] ${
                       log.actionType === 'freeze'
-                        ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                        ? 'bg-[#ff5000]/15 text-[#ff5000] border border-[#ff5000]/30'
                         : log.actionType === 'unfreeze'
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                        : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                        ? 'bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30'
+                        : 'bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/30'
                     }`}
                   >
                     {log.actionType.replace('_', ' ')}
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500">{log.timestamp}</span>
+                  <span className="text-[10px] font-mono text-[#6a6760]">{log.timestamp}</span>
                 </div>
 
-                <p className="text-slate-300 font-medium">{log.note}</p>
+                <p className="text-[#e8e5dc] font-medium">{log.note}</p>
 
-                <div className="flex justify-between items-center text-[11px] font-mono text-slate-400 pt-1 border-t border-white/5">
+                <div className="flex justify-between items-center text-[11px] font-mono text-[#a09c8f] pt-1 border-t border-white/5">
                   <span>Target: {log.targetUserAddress.slice(0, 12)}...</span>
-                  <span className="text-blue-400">Tx: {log.txHash}</span>
+                  <span className="text-[#ccff00]">Tx: {log.txHash}</span>
                 </div>
               </div>
             ))}
@@ -759,30 +759,30 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* Freeze Confirmation Modal */}
       {selectedUserForFreeze && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="glass-card border border-rose-500/30 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5">
-            <div className="flex items-center gap-3 text-rose-400 border-b border-white/10 pb-4">
+        <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="glass-card border border-[#ff5000]/30 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5">
+            <div className="flex items-center gap-3 text-[#ff5000] border-b border-white/10 pb-4">
               <ShieldAlert className="w-6 h-6" />
-              <h3 className="text-base font-extrabold text-slate-100">
+              <h3 className="text-base font-semibold text-[#faf7f0]">
                 {selectedUserForFreeze.isFrozen ? 'Unfreeze Account Funds' : 'Freeze User Funds & Account'}
               </h3>
             </div>
 
-            <p className="text-xs text-slate-300 font-medium leading-relaxed">
+            <p className="text-xs text-[#e8e5dc] font-medium leading-relaxed">
               Target Address:{' '}
-              <span className="font-mono font-bold text-slate-100">{selectedUserForFreeze.address}</span>
+              <span className="font-mono font-bold text-[#faf7f0]">{selectedUserForFreeze.address}</span>
             </p>
 
             {!selectedUserForFreeze.isFrozen && (
               <div>
-                <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                   Freeze Reason / Audit Note
                 </label>
                 <input
                   type="text"
                   value={freezeReason}
                   onChange={(e) => setFreezeReason(e.target.value)}
-                  className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none"
+                  className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#faf7f0] focus:outline-none"
                 />
               </div>
             )}
@@ -790,17 +790,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <div className="flex gap-3 pt-3">
               <button
                 onClick={() => setSelectedUserForFreeze(null)}
-                className="w-1/2 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold text-xs border border-white/10"
+                className="w-1/2 py-2.5 rounded-full bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] font-bold text-xs border border-white/10"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmFreezeToggle}
                 disabled={isProcessingFreeze}
-                className={`w-1/2 py-2.5 rounded-xl font-extrabold text-xs transition-all shadow-lg ${
+                className={`w-1/2 py-2.5 rounded-full font-semibold text-xs transition-all shadow-lg ${
                   selectedUserForFreeze.isFrozen
                     ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/20'
-                    : 'bg-rose-600 hover:bg-rose-500 text-white shadow-rose-600/20'
+                    : 'bg-[#ff5000] hover:bg-rose-500 text-white shadow-rose-600/20'
                 }`}
               >
                 {isProcessingFreeze ? 'Updating...' : selectedUserForFreeze.isFrozen ? 'Confirm Unfreeze' : 'Confirm Freeze'}
@@ -812,16 +812,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* Move Funds Modal */}
       {selectedUserForMove && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="glass-card border border-blue-500/30 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5">
+        <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="glass-card border border-[#ccff00]/30 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-2.5">
-                <ArrowRightLeft className="w-5 h-5 text-blue-400" />
-                <h3 className="text-base font-extrabold text-slate-100">Move / Sweep User Funds</h3>
+                <ArrowRightLeft className="w-5 h-5 text-[#ccff00]" />
+                <h3 className="text-base font-semibold text-[#faf7f0]">Move / Sweep User Funds</h3>
               </div>
               <button
                 onClick={() => setSelectedUserForMove(null)}
-                className="text-slate-400 hover:text-white font-bold text-xs"
+                className="text-[#a09c8f] hover:text-white font-bold text-xs"
               >
                 ✕
               </button>
@@ -829,27 +829,27 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
             {moveSuccess ? (
               <div className="py-6 text-center space-y-2">
-                <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-                <h4 className="font-extrabold text-slate-100 text-sm">Funds Moved & Swept to Treasury!</h4>
+                <CheckCircle2 className="w-10 h-10 text-[#ccff00] mx-auto" />
+                <h4 className="font-semibold text-[#faf7f0] text-sm">Funds Moved & Swept to Treasury!</h4>
               </div>
             ) : (
               <form onSubmit={handleConfirmMoveFunds} className="space-y-4">
                 <div>
-                  <p className="text-xs text-slate-400">Target User Wallet:</p>
-                  <p className="text-xs font-mono font-bold text-slate-200">{selectedUserForMove.address}</p>
+                  <p className="text-xs text-[#a09c8f]">Target User Wallet:</p>
+                  <p className="text-xs font-mono font-bold text-[#e8e5dc]">{selectedUserForMove.address}</p>
                 </div>
 
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Select Asset
                   </label>
                   <select
                     value={moveAssetSymbol}
                     onChange={(e) => setMoveAssetSymbol(e.target.value)}
-                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-slate-200 focus:outline-none"
+                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-[#e8e5dc] focus:outline-none"
                   >
                     {selectedUserForMove.assets.map((a) => (
-                      <option key={a.id} value={a.symbol} className="bg-slate-900 text-slate-200">
+                      <option key={a.id} value={a.symbol} className="bg-[#1c180d] text-[#e8e5dc]">
                         {a.symbol} (Available: {a.balance} {a.symbol})
                       </option>
                     ))}
@@ -857,7 +857,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
 
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Amount to Move/Sweep
                   </label>
                   <input
@@ -866,12 +866,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     value={moveAmount}
                     onChange={(e) => setMoveAmount(e.target.value)}
                     placeholder="0.5"
-                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-slate-200 focus:outline-none"
+                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-[#e8e5dc] focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Destination TRC20 Address
                   </label>
                   <input
@@ -881,20 +881,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     placeholder="TEYgjP8nFzAbSX1qnH8iDVBd6UsZTpDnqC"
                     className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-amber-400 font-bold focus:outline-none"
                   />
-                  <p className="text-[10px] text-slate-400 mt-1 font-mono">
+                  <p className="text-[10px] text-[#a09c8f] mt-1 font-mono">
                     Admin can specify any valid TRC20 destination address for sweep/transfer.
                   </p>
                 </div>
 
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Destination Note / Sweep Reason
                   </label>
                   <input
                     type="text"
                     value={moveNote}
                     onChange={(e) => setMoveNote(e.target.value)}
-                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none"
+                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#e8e5dc] focus:outline-none"
                   />
                 </div>
 
@@ -902,14 +902,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <button
                     type="button"
                     onClick={() => setSelectedUserForMove(null)}
-                    className="w-1/2 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold text-xs border border-white/10"
+                    className="w-1/2 py-2.5 rounded-full bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] font-bold text-xs border border-white/10"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isProcessingMove || !moveAmount}
-                    className="w-1/2 py-2.5 rounded-xl trust-gradient hover:trust-gradient-hover text-white font-extrabold text-xs transition-all shadow-lg shadow-blue-600/20"
+                    className="w-1/2 py-2.5 rounded-full trust-gradient hover:trust-gradient-hover font-semibold text-xs transition-all shadow-lg shadow-[#ccff00]/15"
                   >
                     {isProcessingMove ? 'Executing Sweep...' : 'Confirm Fund Sweep'}
                   </button>
@@ -921,17 +921,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       )}
       {/* Issue / Broadcast Notice Modal */}
       {selectedUserForNotice && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="glass-card border border-purple-500/30 rounded-3xl p-6 sm:p-8 max-w-md w-full bg-slate-950 space-y-5 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="glass-card border border-[#ccff00]/30 rounded-3xl p-6 sm:p-8 max-w-md w-full bg-[#0a0805] space-y-5 shadow-2xl relative">
             <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-              <div className="p-2.5 rounded-2xl bg-purple-500/10 text-purple-400 border border-purple-500/30">
+              <div className="p-2.5 rounded-2xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/30">
                 <Send className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-slate-100 text-base">
+                <h3 className="font-semibold text-[#faf7f0] text-base">
                   {selectedUserForNotice === 'all' ? 'Broadcast Notice to All Users' : 'Dispatch User Notice'}
                 </h3>
-                <p className="text-xs text-slate-400 font-mono">
+                <p className="text-xs text-[#a09c8f] font-mono">
                   {selectedUserForNotice === 'all'
                     ? 'Broadcast official notice to all registered account dashboards'
                     : `Target User: ${(selectedUserForNotice as ConnectedUser).address.slice(0, 10)}...`}
@@ -941,13 +941,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
             {noticeSuccess ? (
               <div className="p-6 text-center space-y-2">
-                <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-                <h4 className="font-extrabold text-slate-100 text-sm">Official Notice Dispatched & Logged!</h4>
+                <CheckCircle2 className="w-10 h-10 text-[#ccff00] mx-auto" />
+                <h4 className="font-semibold text-[#faf7f0] text-sm">Official Notice Dispatched & Logged!</h4>
               </div>
             ) : (
               <form onSubmit={handleSendNoticeSubmit} className="space-y-4 text-left">
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Notice Type / Severity
                   </label>
                   <div className="grid grid-cols-3 gap-2">
@@ -960,10 +960,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         key={t.id}
                         type="button"
                         onClick={() => setNoticeType(t.id as any)}
-                        className={`py-1.5 rounded-xl text-xs font-extrabold border transition-all ${
+                        className={`py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                           noticeType === t.id
-                            ? 'bg-purple-600 text-white border-purple-500'
-                            : 'bg-slate-900 text-slate-400 border-white/10'
+                            ? 'bg-[#110e08] text-white border-[#110e08]'
+                            : 'bg-[#1c180d] text-[#a09c8f] border-white/10'
                         }`}
                       >
                         {t.label}
@@ -973,7 +973,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
 
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Notice Headline
                   </label>
                   <input
@@ -981,12 +981,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     value={noticeTitle}
                     onChange={(e) => setNoticeTitle(e.target.value)}
                     placeholder="Security Compliance Update"
-                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none"
+                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#e8e5dc] focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Detailed Message Body
                   </label>
                   <textarea
@@ -994,7 +994,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     value={noticeMessage}
                     onChange={(e) => setNoticeMessage(e.target.value)}
                     placeholder="Enter official notice details to display on user dashboard..."
-                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none resize-none"
+                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#e8e5dc] focus:outline-none resize-none"
                   />
                 </div>
 
@@ -1002,14 +1002,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <button
                     type="button"
                     onClick={() => setSelectedUserForNotice(null)}
-                    className="w-1/2 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold text-xs border border-white/10"
+                    className="w-1/2 py-2.5 rounded-full bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] font-bold text-xs border border-white/10"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isSendingNotice || !noticeTitle || !noticeMessage}
-                    className="w-1/2 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs transition-all shadow-lg shadow-purple-600/30 disabled:opacity-50"
+                    className="w-1/2 py-2.5 rounded-full trust-gradient hover:trust-gradient-hover font-semibold text-xs transition-all shadow-lg shadow-[#ccff00]/15 disabled:opacity-50"
                   >
                     {isSendingNotice ? 'Dispatching...' : 'Dispatch Notice'}
                   </button>
@@ -1022,35 +1022,35 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* Inter-User Transfer Modal */}
       {transferSourceUser && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="glass-card border border-emerald-500/30 rounded-3xl p-6 sm:p-8 max-w-md w-full bg-slate-950 space-y-5 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="glass-card border border-[#ccff00]/30 rounded-3xl p-6 sm:p-8 max-w-md w-full bg-[#0a0805] space-y-5 shadow-2xl relative">
             <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-              <div className="p-2.5 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              <div className="p-2.5 rounded-2xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/30">
                 <SendHorizontal className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-slate-100 text-base">Direct Inter-User Transfer</h3>
-                <p className="text-xs text-slate-400 font-mono">
-                  Source: <span className="text-emerald-400 font-bold">{transferSourceUser.name || transferSourceUser.address.slice(0, 10)}</span>
+                <h3 className="font-semibold text-[#faf7f0] text-base">Direct Inter-User Transfer</h3>
+                <p className="text-xs text-[#a09c8f] font-mono">
+                  Source: <span className="text-[#ccff00] font-bold">{transferSourceUser.name || transferSourceUser.address.slice(0, 10)}</span>
                 </p>
               </div>
             </div>
 
             {transferSuccess ? (
               <div className="p-6 text-center space-y-2">
-                <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto animate-bounce" />
-                <h4 className="font-extrabold text-slate-100 text-sm">Inter-User Transfer Completed & Recorded!</h4>
+                <CheckCircle2 className="w-10 h-10 text-[#ccff00] mx-auto animate-bounce" />
+                <h4 className="font-semibold text-[#faf7f0] text-sm">Inter-User Transfer Completed & Recorded!</h4>
               </div>
             ) : (
               <form onSubmit={handleConfirmInterUserTransfer} className="space-y-4 text-left">
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Select Recipient Target User
                   </label>
                   <select
                     value={transferTargetUserId}
                     onChange={(e) => setTransferTargetUserId(e.target.value)}
-                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none bg-slate-900"
+                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#e8e5dc] focus:outline-none bg-[#1c180d]"
                   >
                     {users
                       .filter((u) => u.id !== transferSourceUser.id)
@@ -1064,13 +1064,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                    <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                       Asset Token
                     </label>
                     <select
                       value={transferAssetSymbol}
                       onChange={(e) => setTransferAssetSymbol(e.target.value)}
-                      className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none bg-slate-900"
+                      className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#e8e5dc] focus:outline-none bg-[#1c180d]"
                     >
                       {transferSourceUser.assets.map((a) => (
                         <option key={a.id} value={a.symbol}>
@@ -1081,7 +1081,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   </div>
 
                   <div>
-                    <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                    <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                       Amount
                     </label>
                     <input
@@ -1090,13 +1090,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       value={transferAmount}
                       onChange={(e) => setTransferAmount(e.target.value)}
                       placeholder="e.g. 100"
-                      className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-slate-200 focus:outline-none"
+                      className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs font-mono text-[#e8e5dc] focus:outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase block mb-1">
                     Transfer Audit Note
                   </label>
                   <input
@@ -1104,7 +1104,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     value={transferNote}
                     onChange={(e) => setTransferNote(e.target.value)}
                     placeholder="Admin Direct Transfer Note"
-                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none"
+                    className="w-full glass-input rounded-xl px-3.5 py-2.5 text-xs text-[#e8e5dc] focus:outline-none"
                   />
                 </div>
 
@@ -1112,14 +1112,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <button
                     type="button"
                     onClick={() => setTransferSourceUser(null)}
-                    className="w-1/2 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold text-xs border border-white/10"
+                    className="w-1/2 py-2.5 rounded-full bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] font-bold text-xs border border-white/10"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isProcessingTransfer || !transferAmount || !transferTargetUserId}
-                    className="w-1/2 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs transition-all shadow-lg shadow-emerald-600/30 disabled:opacity-50"
+                    className="w-1/2 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-all shadow-lg shadow-emerald-600/30 disabled:opacity-50"
                   >
                     {isProcessingTransfer ? 'Transferring...' : 'Execute Transfer'}
                   </button>

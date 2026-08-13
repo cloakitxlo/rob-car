@@ -32,7 +32,7 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
       <div className="glass-card border border-white/10 rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-2xl space-y-6 my-8">
         {/* Modal Header */}
         <div className="flex justify-between items-center border-b border-white/10 pb-4">
@@ -41,15 +41,15 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
               <Award className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-lg font-extrabold text-slate-100">Robin Card Tier Selection</h2>
-              <p className="text-xs text-slate-400 font-medium mt-0.5">
+              <h2 className="dash-title text-lg text-[#faf7f0]">Robin Card Tier Selection</h2>
+              <p className="text-xs text-[#a09c8f] font-medium mt-0.5">
                 Unlock up to 8.0% instant cashback, metal cards, and airport lounge access.
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-2 rounded-xl bg-slate-900 border border-white/10 transition-colors font-bold"
+            className="text-[#a09c8f] hover:text-white p-2 rounded-xl bg-[#1c180d] border border-white/10 transition-colors font-bold"
           >
             ✕
           </button>
@@ -69,12 +69,12 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
                     onClick={() => setSelectedTier(tier.id)}
                     className={`relative rounded-2xl p-5 border cursor-pointer transition-all flex flex-col justify-between ${
                       isSelected
-                        ? 'bg-slate-950/80 border-blue-500 shadow-xl shadow-blue-600/15 ring-2 ring-blue-500/30'
-                        : 'bg-slate-950/40 border-white/5 hover:border-white/10'
+                        ? 'bg-black/55 border-[#ccff00] shadow-xl shadow-[#ccff00]/15 ring-2 ring-[#ccff00]/30'
+                        : 'bg-black/30 border-white/5 hover:border-white/10'
                     }`}
                   >
                     {tier.popular && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 trust-gradient text-white font-extrabold text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full shadow-md">
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 trust-gradient font-semibold text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full shadow-md">
                         Most Popular
                       </div>
                     )}
@@ -94,20 +94,20 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
                       </div>
 
                       <div>
-                        <h3 className="font-extrabold text-sm text-slate-100">{tier.name}</h3>
+                        <h3 className="font-semibold text-sm text-[#faf7f0]">{tier.name}</h3>
                         <div className="flex items-baseline gap-1 mt-1">
-                          <span className="text-2xl font-extrabold text-blue-400 font-mono">
+                          <span className="text-2xl font-semibold text-[#ccff00] font-mono">
                             {tier.cashbackPercent}%
                           </span>
-                          <span className="text-xs text-slate-400 font-bold">Cashback</span>
+                          <span className="text-xs text-[#a09c8f] font-bold">Cashback</span>
                         </div>
                       </div>
 
-                      <div className="space-y-1.5 text-xs text-slate-400">
+                      <div className="space-y-1.5 text-xs text-[#a09c8f]">
                         {tier.perks.map((perk, idx) => (
                           <div key={idx} className="flex items-start gap-1.5">
-                            <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                            <span className="text-[11px] leading-tight text-slate-200 font-medium">{perk}</span>
+                            <Check className="w-3.5 h-3.5 text-[#ccff00] shrink-0 mt-0.5" />
+                            <span className="text-[11px] leading-tight text-[#e8e5dc] font-medium">{perk}</span>
                           </div>
                         ))}
                       </div>
@@ -115,8 +115,8 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
 
                     <div className="mt-5 pt-3 border-t border-white/10">
                       <div className="flex justify-between items-center text-xs mb-3">
-                        <span className="text-slate-400 text-[11px] font-medium">APEX Stake:</span>
-                        <span className="font-mono font-extrabold text-slate-100">
+                        <span className="text-[#a09c8f] text-[11px] font-medium">APEX Stake:</span>
+                        <span className="font-mono font-semibold text-[#faf7f0]">
                           {tier.stakingRequired === 0 ? 'Free' : `${tier.stakingRequired.toLocaleString()} APEX`}
                         </span>
                       </div>
@@ -127,12 +127,12 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
                           setSelectedTier(tier.id);
                           setStep('address');
                         }}
-                        className={`w-full py-2.5 rounded-xl font-extrabold text-xs transition-all ${
+                        className={`w-full py-2.5 rounded-xl font-semibold text-xs transition-all ${
                           isCurrent
-                            ? 'bg-slate-900 text-slate-500 cursor-default border border-white/5'
+                            ? 'bg-[#1c180d] text-[#6a6760] cursor-default border border-white/5'
                             : isSelected
-                            ? 'trust-gradient text-white shadow-md shadow-blue-600/20'
-                            : 'bg-slate-900 hover:bg-slate-800 text-slate-200 border border-white/10'
+                            ? 'trust-gradient shadow-md shadow-[#ccff00]/15'
+                            : 'bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] border border-white/10'
                         }`}
                       >
                         {isCurrent ? 'Current Active Tier' : 'Select & Order Card'}
@@ -146,14 +146,14 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
         )}
 
         {step === 'address' && (
-          <div className="max-w-lg mx-auto space-y-5 bg-slate-950/80 p-6 sm:p-8 rounded-3xl border border-white/10 shadow-xl">
+          <div className="max-w-lg mx-auto space-y-5 bg-black/55 p-6 sm:p-8 rounded-3xl border border-white/10 shadow-xl">
             <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-              <div className="p-2.5 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20">
+              <div className="p-2.5 rounded-xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/25">
                 <Truck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-sm text-slate-100">Card Physical Delivery Address</h3>
-                <p className="text-xs text-slate-400 font-medium mt-0.5">
+                <h3 className="font-semibold text-sm text-[#faf7f0]">Card Physical Delivery Address</h3>
+                <p className="text-xs text-[#a09c8f] font-medium mt-0.5">
                   Ordering {selectedTierInfo.name} with tracked courier shipping.
                 </p>
               </div>
@@ -161,7 +161,7 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
 
             <div className="space-y-3.5">
               <div>
-                <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1">
+                <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1">
                   Street Address
                 </label>
                 <input
@@ -174,7 +174,7 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1">
                     City
                   </label>
                   <input
@@ -185,7 +185,7 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1">
+                  <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1">
                     ZIP / Postal Code
                   </label>
                   <input
@@ -198,7 +198,7 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
               </div>
 
               <div>
-                <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1">
+                <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1">
                   Country
                 </label>
                 <input
@@ -213,13 +213,13 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
             <div className="flex gap-3 pt-3">
               <button
                 onClick={() => setStep('tiers')}
-                className="w-1/3 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-extrabold transition-all border border-white/10"
+                className="w-1/3 py-3 rounded-xl bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] text-xs font-semibold transition-all border border-white/10"
               >
                 Back
               </button>
               <button
                 onClick={handleConfirmOrder}
-                className="w-2/3 py-3 rounded-xl trust-gradient text-white text-xs font-extrabold transition-all shadow-lg shadow-blue-600/25"
+                className="w-2/3 py-3 rounded-full trust-gradient text-xs font-semibold transition-all shadow-lg shadow-[#ccff00]/15"
               >
                 Confirm & Issue Card
               </button>
@@ -229,18 +229,18 @@ export const CardTiersModal: React.FC<CardTiersModalProps> = ({
 
         {step === 'success' && (
           <div className="max-w-md mx-auto text-center space-y-4 py-8">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+            <div className="w-16 h-16 rounded-full bg-[#ccff00]/10 border border-[#ccff00]/30 text-[#ccff00] flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-8 h-8 text-[#ccff00]" />
             </div>
-            <h3 className="text-xl font-extrabold text-slate-100">
+            <h3 className="text-xl font-semibold text-[#faf7f0]">
               {selectedTierInfo.name} Activated!
             </h3>
-            <p className="text-xs text-slate-400 font-medium leading-relaxed">
+            <p className="text-xs text-[#a09c8f] font-medium leading-relaxed">
               Your virtual card is immediately active for online purchases. Your physical metal card is being crafted and will ship via DHL Express.
             </p>
             <button
               onClick={onClose}
-              className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-extrabold text-xs transition-all border border-white/10"
+              className="px-6 py-3 rounded-xl bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] font-semibold text-xs transition-all border border-white/10"
             >
               Return to Dashboard
             </button>

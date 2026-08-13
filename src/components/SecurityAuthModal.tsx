@@ -126,59 +126,59 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md glass-card border border-white/10 rounded-3xl p-6 sm:p-7 shadow-2xl bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/55 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-md glass-card border border-white/10 rounded-3xl p-6 sm:p-7 shadow-2xl bg-gradient-to-b from-[#1c180d] via-[#110e08] to-black overflow-hidden">
         {/* Background glow */}
-        <div className="absolute top-0 right-0 w-60 h-60 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-60 h-60 bg-[#ccff00]/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close Button */}
         <button
           onClick={onCancel}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-800/60 text-slate-400 hover:text-white transition-all border border-white/10"
+          className="absolute top-5 right-5 p-2 rounded-full bg-[#35322d]/60 text-[#a09c8f] hover:text-white transition-all border border-white/10"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Modal Header */}
         <div className="flex items-center gap-3.5 mb-5 border-b border-white/10 pb-4">
-          <div className="p-3 rounded-2xl trust-gradient text-white shadow-lg shadow-blue-600/30">
+          <div className="p-3 rounded-2xl trust-gradient shadow-lg shadow-[#ccff00]/20">
             <Lock className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-extrabold text-slate-100 text-base">{actionTitle}</h3>
-            <p className="text-xs text-slate-400 font-medium">{actionDescription}</p>
+            <h3 className="font-semibold text-[#faf7f0] text-base">{actionTitle}</h3>
+            <p className="text-xs text-[#a09c8f] font-medium">{actionDescription}</p>
           </div>
         </div>
 
         {/* Amount / Target context if available */}
         {(amountUsd || targetInfo) && (
-          <div className="mb-5 p-3.5 rounded-2xl bg-slate-950/70 border border-white/5 space-y-1 text-xs font-mono">
+          <div className="mb-5 p-3.5 rounded-2xl bg-black/50 border border-white/5 space-y-1 text-xs font-mono">
             {amountUsd && (
               <div className="flex justify-between">
-                <span className="text-slate-400">Transaction Value:</span>
-                <span className="text-emerald-400 font-extrabold">${amountUsd.toLocaleString()} USD</span>
+                <span className="text-[#a09c8f]">Transaction Value:</span>
+                <span className="text-[#ccff00] font-semibold">${amountUsd.toLocaleString()} USD</span>
               </div>
             )}
             {targetInfo && (
               <div className="flex justify-between">
-                <span className="text-slate-400">Target Address/User:</span>
-                <span className="text-slate-200 font-bold truncate max-w-[180px]">{targetInfo}</span>
+                <span className="text-[#a09c8f]">Target Address/User:</span>
+                <span className="text-[#e8e5dc] font-bold truncate max-w-[180px]">{targetInfo}</span>
               </div>
             )}
           </div>
         )}
 
         {/* Mode Selector Tabs */}
-        <div className="flex p-1 rounded-2xl bg-slate-950/80 border border-white/10 mb-6">
+        <div className="flex p-1 rounded-2xl bg-black/55 border border-white/10 mb-6">
           <button
             onClick={() => {
               setAuthMode('pin');
               setErrorMsg(null);
             }}
-            className={`flex-1 py-2 rounded-xl text-xs font-extrabold transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 ${
               authMode === 'pin'
-                ? 'trust-gradient text-white shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'trust-gradient shadow-md'
+                : 'text-[#a09c8f] hover:text-[#e8e5dc]'
             }`}
           >
             <KeyRound className="w-4 h-4" />
@@ -189,10 +189,10 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
               setAuthMode('biometric');
               setErrorMsg(null);
             }}
-            className={`flex-1 py-2 rounded-xl text-xs font-extrabold transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 ${
               authMode === 'biometric'
-                ? 'trust-gradient text-white shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'trust-gradient shadow-md'
+                : 'text-[#a09c8f] hover:text-[#e8e5dc]'
             }`}
           >
             <Fingerprint className="w-4 h-4" />
@@ -203,27 +203,27 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
         {/* Forgotten PIN Overlay */}
         {showForgotPinOverlay ? (
           <div className="space-y-4 animate-in fade-in duration-200">
-            <div className="p-3.5 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-xs text-blue-300 font-medium">
+            <div className="p-3.5 rounded-2xl bg-[#ccff00]/10 border border-[#ccff00]/25 text-xs text-[#ccff00] font-medium">
               Verify account credentials below to reset your 4-digit Security PIN immediately.
             </div>
 
             {resetErrorMsg && (
-              <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-bold flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+              <div className="p-3 rounded-2xl bg-[#ff5000]/10 border border-[#ff5000]/30 text-[#ff5000] text-xs font-bold flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-[#ff5000] shrink-0" />
                 <span>{resetErrorMsg}</span>
               </div>
             )}
 
             {resetSuccessMsg && (
-              <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="p-3 rounded-2xl bg-[#ccff00]/10 border border-[#ccff00]/30 text-[#ccff00] text-xs font-bold flex items-center gap-2">
+                <Check className="w-4 h-4 text-[#ccff00] shrink-0" />
                 <span>{resetSuccessMsg}</span>
               </div>
             )}
 
             <form onSubmit={handleResetPinSubmit} className="space-y-3">
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider block mb-1">
+                <label className="text-[10px] font-semibold uppercase text-[#a09c8f] tracking-wider block mb-1">
                   Account Password
                 </label>
                 <input
@@ -237,7 +237,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider block mb-1">
+                  <label className="text-[10px] font-semibold uppercase text-[#a09c8f] tracking-wider block mb-1">
                     New 4-Digit PIN
                   </label>
                   <input
@@ -250,7 +250,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider block mb-1">
+                  <label className="text-[10px] font-semibold uppercase text-[#a09c8f] tracking-wider block mb-1">
                     Confirm PIN
                   </label>
                   <input
@@ -268,14 +268,14 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowForgotPinOverlay(false)}
-                  className="w-1/2 py-2.5 rounded-xl glass-card text-slate-300 text-xs font-extrabold hover:text-white"
+                  className="w-1/2 py-2.5 rounded-full glass-card text-[#e8e5dc] text-xs font-semibold hover:text-white"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isResetting}
-                  className="w-1/2 py-2.5 rounded-xl trust-gradient text-white text-xs font-extrabold shadow-md flex items-center justify-center gap-1.5"
+                  className="w-1/2 py-2.5 rounded-full trust-gradient text-xs font-semibold shadow-md flex items-center justify-center gap-1.5"
                 >
                   {isResetting ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <span>Reset PIN</span>}
                 </button>
@@ -287,7 +287,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
           <div className="space-y-5">
             {/* PIN Display Dots */}
             <div className="flex flex-col items-center gap-2">
-              <span className="text-xs font-extrabold text-slate-300 uppercase tracking-wider">
+              <span className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider">
                 Enter 4-Digit Security PIN
               </span>
               <div className="flex items-center justify-center gap-3 my-2">
@@ -298,8 +298,8 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
                       key={idx}
                       className={`w-11 h-11 rounded-2xl flex items-center justify-center border font-mono text-lg transition-all ${
                         filled
-                          ? 'bg-blue-600/30 border-blue-500 text-white shadow-lg shadow-blue-500/20 scale-105'
-                          : 'bg-slate-950/80 border-white/10 text-slate-600'
+                          ? 'bg-[#ccff00]/30 border-[#ccff00] text-[#110e08] shadow-lg shadow-[#ccff00]/20 scale-105'
+                          : 'bg-black/55 border-white/10 text-slate-600'
                       }`}
                     >
                       {filled ? '•' : ''}
@@ -309,7 +309,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
               </div>
 
               {errorMsg && (
-                <div className="px-3 py-1.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold flex items-center gap-1.5 animate-in fade-in">
+                <div className="px-3 py-1.5 rounded-xl bg-[#ff5000]/10 border border-[#ff5000]/30 text-[#ff5000] text-xs font-bold flex items-center gap-1.5 animate-in fade-in">
                   <ShieldAlert className="w-3.5 h-3.5 shrink-0" />
                   <span>{errorMsg}</span>
                 </div>
@@ -323,7 +323,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
                   key={num}
                   onClick={() => handleKeypadPress(num)}
                   disabled={isVerifying}
-                  className="h-12 rounded-2xl glass-card border border-white/10 text-slate-100 hover:text-white hover:border-blue-500/40 text-base font-extrabold transition-all active:scale-95 flex items-center justify-center"
+                  className="h-12 rounded-2xl glass-card border border-white/10 text-[#faf7f0] hover:text-white hover:border-[#ccff00]/40 text-base font-semibold transition-all active:scale-95 flex items-center justify-center"
                 >
                   {num}
                 </button>
@@ -332,14 +332,14 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
               <button
                 onClick={() => handleKeypadPress('0')}
                 disabled={isVerifying}
-                className="h-12 rounded-2xl glass-card border border-white/10 text-slate-100 hover:text-white hover:border-blue-500/40 text-base font-extrabold transition-all active:scale-95 flex items-center justify-center"
+                className="h-12 rounded-2xl glass-card border border-white/10 text-[#faf7f0] hover:text-white hover:border-[#ccff00]/40 text-base font-semibold transition-all active:scale-95 flex items-center justify-center"
               >
                 0
               </button>
               <button
                 onClick={handleKeypadDelete}
                 disabled={isVerifying}
-                className="h-12 rounded-2xl glass-card border border-white/10 text-slate-400 hover:text-white hover:border-rose-500/40 text-xs font-extrabold transition-all active:scale-95 flex items-center justify-center"
+                className="h-12 rounded-2xl glass-card border border-white/10 text-[#a09c8f] hover:text-white hover:border-[#ff5000]/40 text-xs font-semibold transition-all active:scale-95 flex items-center justify-center"
               >
                 DEL
               </button>
@@ -352,7 +352,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
                   setShowForgotPinOverlay(true);
                   setResetErrorMsg(null);
                 }}
-                className="text-xs text-blue-400 hover:text-blue-300 font-extrabold hover:underline inline-flex items-center gap-1.5"
+                className="text-xs text-[#ccff00] hover:text-[#ccff00] font-semibold hover:underline inline-flex items-center gap-1.5"
               >
                 <span>Forgot Security PIN?</span>
               </button>
@@ -365,7 +365,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
               <div
                 className={`absolute inset-0 rounded-full border-2 border-dashed ${
                   isBiometricScanning
-                    ? 'border-blue-500 animate-spin'
+                    ? 'border-[#ccff00] animate-spin'
                     : biometricSuccess
                     ? 'border-emerald-500 scale-105'
                     : 'border-white/20'
@@ -374,14 +374,14 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
               <div
                 className={`w-20 h-20 rounded-full flex items-center justify-center transition-all ${
                   biometricSuccess
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-lg shadow-emerald-500/30 scale-110'
+                    ? 'bg-[#ccff00]/15 text-[#ccff00] border border-[#ccff00]/40 shadow-lg shadow-emerald-500/30 scale-110'
                     : isBiometricScanning
-                    ? 'trust-gradient text-white shadow-xl shadow-blue-600/40'
-                    : 'bg-slate-900 text-slate-400 border border-white/10'
+                    ? 'trust-gradient shadow-xl shadow-[#ccff00]/25'
+                    : 'bg-[#1c180d] text-[#a09c8f] border border-white/10'
                 }`}
               >
                 {biometricSuccess ? (
-                  <Check className="w-10 h-10 text-emerald-400" />
+                  <Check className="w-10 h-10 text-[#ccff00]" />
                 ) : (
                   <Fingerprint className="w-10 h-10" />
                 )}
@@ -389,14 +389,14 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-extrabold text-slate-100">
+              <h4 className="text-sm font-semibold text-[#faf7f0]">
                 {biometricSuccess
                   ? 'Biometric Scan Verified!'
                   : isBiometricScanning
                   ? 'Scanning Face ID / Touch ID...'
                   : 'Touch ID or Face ID Scan'}
               </h4>
-              <p className="text-xs text-slate-400 mt-1 max-w-xs mx-auto">
+              <p className="text-xs text-[#a09c8f] mt-1 max-w-xs mx-auto">
                 {biometricSuccess
                   ? 'Identity confirmed. Unlocking action...'
                   : isBiometricScanning
@@ -409,7 +409,7 @@ export const SecurityAuthModal: React.FC<SecurityAuthModalProps> = ({
               <button
                 onClick={triggerBiometricScan}
                 disabled={isBiometricScanning}
-                className="w-full py-3 rounded-2xl trust-gradient hover:trust-gradient-hover text-white text-xs font-extrabold transition-all shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                className="w-full py-3 rounded-2xl trust-gradient hover:trust-gradient-hover text-xs font-semibold transition-all shadow-xl shadow-[#ccff00]/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
               >
                 {isBiometricScanning ? (
                   <>

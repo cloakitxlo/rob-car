@@ -29,44 +29,44 @@ export const CardControls: React.FC<CardControlsProps> = ({ card, onUpdateLimits
     <div className="glass-card border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
       <div className="flex items-center justify-between border-b border-white/10 pb-5">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20">
+          <div className="p-2 rounded-xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/25">
             <SlidersHorizontal className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-extrabold text-base text-slate-100">Card Controls & Limits</h3>
-            <p className="text-xs text-slate-400 font-medium">Manage payment channels and security settings</p>
+            <h3 className="dash-title text-base text-[#faf7f0]">Card Controls & Limits</h3>
+            <p className="text-xs text-[#a09c8f] font-medium">Manage payment channels and security settings</p>
           </div>
         </div>
         <button
           onClick={handleSave}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-xs font-extrabold transition-all shadow-lg shadow-blue-600/25 active:scale-95"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full trust-gradient hover:trust-gradient-hover text-xs font-semibold transition-all shadow-lg shadow-[#ccff00]/15 active:scale-95"
         >
-          {saved ? <Check className="w-4 h-4 text-white" /> : <Save className="w-4 h-4" />}
+          {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
           <span>{saved ? 'Saved!' : 'Save Changes'}</span>
         </button>
       </div>
 
       {/* Payment Channel Toggles */}
       <div className="space-y-3">
-        <h4 className="text-xs font-extrabold text-slate-400 uppercase tracking-wider">
+        <h4 className="text-xs font-semibold text-[#a09c8f] uppercase tracking-wider">
           Security Payment Channels
         </h4>
 
         {/* Contactless */}
-        <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/60 border border-white/5 hover:border-blue-500/20 transition-all">
+        <div className="flex items-center justify-between p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-[#ccff00]/25 transition-all">
           <div className="flex items-center gap-3.5">
-            <div className="p-2.5 rounded-xl bg-slate-900 text-blue-400 border border-white/10">
+            <div className="p-2.5 rounded-xl bg-[#1c180d] text-[#ccff00] border border-white/10">
               <Smartphone className="w-4 h-4" />
             </div>
             <div>
-              <p className="text-xs font-extrabold text-slate-100">Contactless (NFC) Tap & Pay</p>
-              <p className="text-[11px] text-slate-400">Physical terminal touchless POS payments</p>
+              <p className="text-xs font-semibold text-[#faf7f0]">Contactless (NFC) Tap & Pay</p>
+              <p className="text-[11px] text-[#a09c8f]">Physical terminal touchless POS payments</p>
             </div>
           </div>
           <button
             onClick={() => setContactless(!contactless)}
             className={`w-12 h-6 rounded-full p-1 transition-colors ${
-              contactless ? 'bg-blue-600' : 'bg-slate-800'
+              contactless ? 'bg-[#ccff00]' : 'bg-[#35322d]'
             }`}
           >
             <div
@@ -78,20 +78,20 @@ export const CardControls: React.FC<CardControlsProps> = ({ card, onUpdateLimits
         </div>
 
         {/* Online Payments */}
-        <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/60 border border-white/5 hover:border-blue-500/20 transition-all">
+        <div className="flex items-center justify-between p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-[#ccff00]/25 transition-all">
           <div className="flex items-center gap-3.5">
-            <div className="p-2.5 rounded-xl bg-slate-900 text-blue-400 border border-white/10">
+            <div className="p-2.5 rounded-xl bg-[#1c180d] text-[#ccff00] border border-white/10">
               <Globe className="w-4 h-4" />
             </div>
             <div>
-              <p className="text-xs font-extrabold text-slate-100">Online E-Commerce Transactions</p>
-              <p className="text-[11px] text-slate-400">Web purchases and subscription billing</p>
+              <p className="text-xs font-semibold text-[#faf7f0]">Online E-Commerce Transactions</p>
+              <p className="text-[11px] text-[#a09c8f]">Web purchases and subscription billing</p>
             </div>
           </div>
           <button
             onClick={() => setOnline(!online)}
             className={`w-12 h-6 rounded-full p-1 transition-colors ${
-              online ? 'bg-blue-600' : 'bg-slate-800'
+              online ? 'bg-[#ccff00]' : 'bg-[#35322d]'
             }`}
           >
             <div
@@ -103,20 +103,20 @@ export const CardControls: React.FC<CardControlsProps> = ({ card, onUpdateLimits
         </div>
 
         {/* ATM Withdrawals */}
-        <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/60 border border-white/5 hover:border-blue-500/20 transition-all">
+        <div className="flex items-center justify-between p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-[#ccff00]/25 transition-all">
           <div className="flex items-center gap-3.5">
-            <div className="p-2.5 rounded-xl bg-slate-900 text-blue-400 border border-white/10">
+            <div className="p-2.5 rounded-xl bg-[#1c180d] text-[#ccff00] border border-white/10">
               <Landmark className="w-4 h-4" />
             </div>
             <div>
-              <p className="text-xs font-extrabold text-slate-100">Physical ATM Cash Withdrawals</p>
-              <p className="text-[11px] text-slate-400 font-medium">Global fee-free cash network access</p>
+              <p className="text-xs font-semibold text-[#faf7f0]">Physical ATM Cash Withdrawals</p>
+              <p className="text-[11px] text-[#a09c8f] font-medium">Global fee-free cash network access</p>
             </div>
           </div>
           <button
             onClick={() => setAtm(!atm)}
             className={`w-12 h-6 rounded-full p-1 transition-colors ${
-              atm ? 'bg-blue-600' : 'bg-slate-800'
+              atm ? 'bg-[#ccff00]' : 'bg-[#35322d]'
             }`}
           >
             <div
@@ -128,14 +128,14 @@ export const CardControls: React.FC<CardControlsProps> = ({ card, onUpdateLimits
         </div>
 
         {/* Auto Topup Toggle */}
-        <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/60 border border-white/5 hover:border-blue-500/20 transition-all">
+        <div className="flex items-center justify-between p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-[#ccff00]/25 transition-all">
           <div className="flex items-center gap-3.5">
-            <div className="p-2.5 rounded-xl bg-slate-900 text-amber-400 border border-white/10">
+            <div className="p-2.5 rounded-xl bg-[#1c180d] text-amber-400 border border-white/10">
               <Zap className="w-4 h-4" />
             </div>
             <div>
-              <p className="text-xs font-extrabold text-slate-100">Smart Auto Top-up Trigger</p>
-              <p className="text-[11px] text-slate-400 font-medium">
+              <p className="text-xs font-semibold text-[#faf7f0]">Smart Auto Top-up Trigger</p>
+              <p className="text-[11px] text-[#a09c8f] font-medium">
                 Auto reload $500 from ETH when card drops below $100
               </p>
             </div>
@@ -143,7 +143,7 @@ export const CardControls: React.FC<CardControlsProps> = ({ card, onUpdateLimits
           <button
             onClick={() => setAutoTopup(!autoTopup)}
             className={`w-12 h-6 rounded-full p-1 transition-colors ${
-              autoTopup ? 'bg-amber-500' : 'bg-slate-800'
+              autoTopup ? 'bg-amber-500' : 'bg-[#35322d]'
             }`}
           >
             <div

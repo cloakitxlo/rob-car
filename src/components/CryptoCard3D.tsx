@@ -37,18 +37,18 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
       case 'black':
         return {
           glowClass:
-            'bg-gradient-to-r from-blue-600/70 via-indigo-900/80 to-purple-950/70 shadow-[0_0_65px_rgba(59,130,246,0.35)] animate-aura-pulse',
+            'bg-gradient-to-r from-[#ccff00]/40 via-[#1c180d]/90 to-[#110e08]/80 shadow-[0_0_65px_rgba(204,255,0,0.22)] animate-aura-pulse',
           cardBgClass:
-            'bg-gradient-to-br from-zinc-950 via-zinc-900 to-black border-zinc-700/80 shadow-2xl shadow-blue-950/50 hover:border-blue-500/50',
-          shimmerGradient: 'from-blue-400/20 via-indigo-300/15 to-transparent',
+            'bg-gradient-to-br from-zinc-950 via-zinc-900 to-black border-zinc-700/80 shadow-2xl shadow-black/50 hover:border-[#ccff00]/50',
+          shimmerGradient: 'from-[#ccff00]/20 via-[#dbff40]/15 to-transparent',
           badgeClass:
             'bg-zinc-900/90 text-zinc-100 border-zinc-700 shadow-md shadow-black/80 font-mono tracking-widest',
           badgeLabel: 'OBSIDIAN BLACK',
           chipGradient: 'from-amber-300 via-yellow-200 to-amber-400 border-amber-500/60',
           watermarkColor: 'text-zinc-800 fill-zinc-800/30',
-          accentGlowColor: 'bg-blue-500/20',
-          starColor: 'text-blue-400',
-          tagBg: 'bg-blue-500/10 text-blue-300 border-blue-500/30',
+          accentGlowColor: 'bg-[#ccff00]/15',
+          starColor: 'text-[#ccff00]',
+          tagBg: 'bg-[#ccff00]/10 text-[#ccff00] border-[#ccff00]/30',
         };
       case 'gold':
         return {
@@ -75,19 +75,19 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
             'bg-gradient-to-br from-slate-900 via-slate-800 to-zinc-900 border-slate-400/70 shadow-2xl shadow-slate-950/80 hover:border-slate-300',
           shimmerGradient: 'from-white/50 via-slate-200/30 to-transparent',
           badgeClass:
-            'bg-slate-800/90 text-slate-100 border-slate-400/70 shadow-md font-mono tracking-widest',
+            'bg-[#35322d]/90 text-[#faf7f0] border-slate-400/70 shadow-md font-mono tracking-widest',
           badgeLabel: 'SILVER METALLIC',
           chipGradient: 'from-slate-100 via-slate-200 to-zinc-300 border-slate-400',
-          watermarkColor: 'text-slate-400/15 fill-slate-400/15',
+          watermarkColor: 'text-[#a09c8f]/15 fill-slate-400/15',
           accentGlowColor: 'bg-slate-400/20',
-          starColor: 'text-slate-200',
-          tagBg: 'bg-slate-700/50 text-slate-200 border-slate-500/40',
+          starColor: 'text-[#e8e5dc]',
+          tagBg: 'bg-slate-700/50 text-[#e8e5dc] border-slate-500/40',
         };
       case 'platinum':
       default:
         return {
           glowClass:
-            'bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-500 shadow-[0_0_65px_rgba(34,211,238,0.4)] animate-aura-pulse',
+            'bg-gradient-to-r from-[#ccff00] via-[#dbff40] to-[#a8d400] shadow-[0_0_65px_rgba(204,255,0,0.28)] animate-aura-pulse',
           cardBgClass:
             'bg-gradient-to-br from-slate-950 via-cyan-950 to-slate-900 border-cyan-400/80 shadow-2xl shadow-cyan-950/80 hover:border-cyan-300',
           shimmerGradient: 'from-cyan-300/40 via-teal-200/25 to-transparent',
@@ -145,7 +145,7 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
         {/* Dynamic Tier Ambient Background Glow */}
         <div
           className={`absolute -inset-2.5 rounded-3xl blur-2xl transition-all duration-700 pointer-events-none ${
-            card.isFrozen ? 'opacity-20 bg-slate-800' : 'opacity-80 group-hover:opacity-100 ' + tierStyle.glowClass
+            card.isFrozen ? 'opacity-20 bg-[#35322d]' : 'opacity-80 group-hover:opacity-100 ' + tierStyle.glowClass
           }`}
         />
 
@@ -177,17 +177,17 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
 
           {/* Frozen Watermark Overlay */}
           {card.isFrozen && (
-            <div className="absolute inset-0 z-30 bg-slate-950/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center">
-              <ShieldAlert className="w-12 h-12 text-blue-400 mb-2 animate-bounce" />
-              <span className="text-sm font-extrabold text-white tracking-wider uppercase">
+            <div className="absolute inset-0 z-30 bg-[#0a0805]/85 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center">
+              <ShieldAlert className="w-12 h-12 text-[#ccff00] mb-2 animate-bounce" />
+              <span className="text-sm font-semibold text-white tracking-wider uppercase">
                 Card Temporarily Locked
               </span>
-              <p className="text-xs text-slate-300 mt-1 max-w-xs">
+              <p className="text-xs text-[#e8e5dc] mt-1 max-w-xs">
                 Online purchases and ATM withdrawals are paused for security.
               </p>
               <button
                 onClick={onToggleFreeze}
-                className="mt-4 px-5 py-2 rounded-xl trust-gradient text-white font-extrabold text-xs transition-all shadow-lg shadow-blue-600/30"
+                className="mt-4 px-5 py-2 rounded-full trust-gradient font-semibold text-xs transition-all shadow-lg shadow-[#ccff00]/20"
               >
                 Unlock Card Now
               </button>
@@ -198,10 +198,10 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
           <div className="flex justify-between items-start z-10">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-white fill-white/20" />
-              <span className="font-extrabold tracking-wider text-lg text-white font-mono">
+              <span className="font-semibold tracking-wider text-lg text-white font-mono">
                 CARD
               </span>
-              <span className={`text-[9px] font-extrabold px-2.5 py-0.5 rounded-full border shadow-sm ${tierStyle.badgeClass}`}>
+              <span className={`text-[9px] font-semibold px-2.5 py-0.5 rounded-full border shadow-sm ${tierStyle.badgeClass}`}>
                 {tierStyle.badgeLabel}
               </span>
             </div>
@@ -222,7 +222,7 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
                 <div className="bg-black/20 rounded-sm" />
               </div>
             </div>
-            <div className="text-[10px] tracking-widest text-white/80 font-mono font-extrabold uppercase drop-shadow">
+            <div className="text-[10px] tracking-widest text-white/80 font-mono font-semibold uppercase drop-shadow">
               DEBIT CARD
             </div>
           </div>
@@ -274,7 +274,7 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
 
               {/* Network Logo */}
               <div className="flex -space-x-2">
-                <div className="w-6 h-6 rounded-full bg-blue-500/90 shadow-sm border border-white/20" />
+                <div className="w-6 h-6 rounded-full bg-[#ccff00] shadow-sm border border-white/20" />
                 <div className="w-6 h-6 rounded-full bg-cyan-400/90 shadow-sm border border-white/20" />
               </div>
             </div>
@@ -283,19 +283,19 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
       </div>
 
       {/* Card Balance under Card */}
-      <div className={`w-full max-w-md mt-5 p-4 rounded-2xl glass-card border bg-slate-950/60 flex items-center justify-between gap-3 ${
-        isCardActive ? 'border-emerald-500/30' : 'border-amber-500/30'
+      <div className={`w-full max-w-md mt-5 p-4 rounded-2xl glass-card border bg-black/40 flex items-center justify-between gap-3 ${
+        isCardActive ? 'border-[#ccff00]/30' : 'border-amber-500/30'
       }`}>
         <div>
-          <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Card Balance</p>
+          <p className="text-[10px] uppercase font-semibold tracking-wider text-[#a09c8f]">Card Balance</p>
           <p className="text-2xl font-black text-white font-mono tracking-tight mt-0.5">
             ${(card.balanceUsd ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </p>
         </div>
         <div className="text-right">
-          <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-500">Available</p>
+          <p className="text-[10px] uppercase font-semibold tracking-wider text-[#6a6760]">Available</p>
           {isCardActive ? (
-            <p className="text-xs font-bold text-emerald-400 mt-1">Ready to spend</p>
+            <p className="text-xs font-bold text-[#ccff00] mt-1">Ready to spend</p>
           ) : (
             <p className="text-xs font-bold text-amber-400 mt-1">Not Active</p>
           )}
@@ -308,25 +308,25 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
           onClick={onToggleFreeze}
           className={`flex flex-col items-center justify-center p-3 rounded-2xl border text-xs font-bold transition-all ${
             card.isFrozen
-              ? 'bg-blue-600/20 text-blue-300 border-blue-500/40 hover:bg-blue-600/30'
-              : 'glass-card text-slate-200 border-white/10 hover:border-blue-500/30 hover:text-white'
+              ? 'bg-[#ccff00]/15 text-[#ccff00] border-[#ccff00]/40 hover:bg-[#ccff00]/20'
+              : 'glass-card text-[#e8e5dc] border-white/10 hover:border-[#ccff00]/30 hover:text-white'
           }`}
         >
-          {card.isFrozen ? <Unlock className="w-4 h-4 mb-1 text-blue-400" /> : <Lock className="w-4 h-4 mb-1 text-slate-400" />}
+          {card.isFrozen ? <Unlock className="w-4 h-4 mb-1 text-[#ccff00]" /> : <Lock className="w-4 h-4 mb-1 text-[#a09c8f]" />}
           <span>{card.isFrozen ? 'Unlock' : 'Freeze'}</span>
         </button>
 
         <button
           onClick={onOpenTopup}
-          className="flex flex-col items-center justify-center p-3 rounded-2xl glass-card text-slate-200 hover:text-white border border-white/10 hover:border-blue-500/30 text-xs font-bold transition-all"
+          className="flex flex-col items-center justify-center p-3 rounded-2xl glass-card text-[#e8e5dc] hover:text-white border border-white/10 hover:border-[#ccff00]/30 text-xs font-bold transition-all"
         >
-          <RefreshCw className="w-4 h-4 mb-1 text-emerald-400" />
+          <RefreshCw className="w-4 h-4 mb-1 text-[#ccff00]" />
           <span>Top Up</span>
         </button>
 
         <button
           onClick={handleRequestViewPin}
-          className="flex flex-col items-center justify-center p-3 rounded-2xl glass-card text-slate-200 hover:text-white border border-white/10 hover:border-blue-500/30 text-xs font-bold transition-all"
+          className="flex flex-col items-center justify-center p-3 rounded-2xl glass-card text-[#e8e5dc] hover:text-white border border-white/10 hover:border-[#ccff00]/30 text-xs font-bold transition-all"
         >
           <KeyRound className="w-4 h-4 mb-1 text-amber-400" />
           <span>View PIN</span>
@@ -334,38 +334,38 @@ export const CryptoCard3D: React.FC<CryptoCard3DProps> = ({
 
         <button
           onClick={onOpenTiers}
-          className="flex flex-col items-center justify-center p-3 rounded-2xl glass-card text-slate-200 hover:text-white border border-white/10 hover:border-blue-500/30 text-xs font-bold transition-all"
+          className="flex flex-col items-center justify-center p-3 rounded-2xl glass-card text-[#e8e5dc] hover:text-white border border-white/10 hover:border-[#ccff00]/30 text-xs font-bold transition-all"
         >
-          <Sparkles className="w-4 h-4 mb-1 text-purple-400" />
+          <Sparkles className="w-4 h-4 mb-1 text-[#ccff00]" />
           <span>Tiers</span>
         </button>
       </div>
 
       {/* PIN Reveal Modal */}
       {showPinModal && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4">
           <div className="glass-card border border-white/10 rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mx-auto">
               <KeyRound className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-extrabold text-slate-100">Physical Card ATM PIN</h3>
-              <p className="text-xs text-slate-400 mt-1">
+              <h3 className="text-lg font-semibold text-[#faf7f0]">Physical Card ATM PIN</h3>
+              <p className="text-xs text-[#a09c8f] mt-1">
                 Unlocked via Security PIN authentication. Use at ATMs and payment terminals.
               </p>
             </div>
 
-            <div className="py-4 bg-slate-950/80 rounded-2xl border border-white/10 font-mono text-3xl font-extrabold text-amber-400 tracking-widest">
+            <div className="py-4 bg-black/55 rounded-2xl border border-white/10 font-mono text-3xl font-semibold text-amber-400 tracking-widest">
               {cardAtmPin}
             </div>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-[#a09c8f]">
               Never share your PIN code with anyone. Robin Card Support will never ask for your PIN.
             </p>
 
             <button
               onClick={() => setShowPinModal(false)}
-              className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-bold transition-all border border-white/10"
+              className="w-full py-3 rounded-full bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] text-xs font-bold transition-all border border-white/10"
             >
               Done & Close
             </button>

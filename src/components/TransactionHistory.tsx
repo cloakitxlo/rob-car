@@ -32,15 +32,15 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
   const getCategoryBadge = (category: Transaction['category']) => {
     switch (category) {
       case 'purchase':
-        return { icon: ShoppingBag, color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' };
+        return { icon: ShoppingBag, color: 'text-[#ccff00] bg-[#ccff00]/10 border-[#ccff00]/25' };
       case 'topup':
-        return { icon: RefreshCw, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' };
+        return { icon: RefreshCw, color: 'text-[#ccff00] bg-[#ccff00]/10 border-[#ccff00]/25' };
       case 'swap':
-        return { icon: ArrowUpRight, color: 'text-purple-400 bg-purple-500/10 border-purple-500/20' };
+        return { icon: ArrowUpRight, color: 'text-[#ccff00] bg-[#ccff00]/10 border-[#ccff00]/25' };
       case 'reward':
         return { icon: Gift, color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' };
       default:
-        return { icon: ShoppingBag, color: 'text-slate-400 bg-slate-900' };
+        return { icon: ShoppingBag, color: 'text-[#a09c8f] bg-[#1c180d]' };
     }
   };
 
@@ -67,8 +67,8 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
       {/* Top Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-5">
         <div>
-          <h3 className="font-extrabold text-base text-slate-100">Activity & Transaction History</h3>
-          <p className="text-xs text-slate-400 font-medium mt-0.5">
+          <h3 className="dash-title text-base text-[#faf7f0]">Activity & Transaction History</h3>
+          <p className="text-xs text-[#a09c8f] font-medium mt-0.5">
             Real-time feed of card purchases, top-ups, and instant cashback rewards.
           </p>
         </div>
@@ -76,7 +76,7 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowExportModal(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-xs font-bold transition-all active:scale-95 shadow-lg shadow-blue-600/20"
+            className="flex items-center gap-2 px-4 py-2 rounded-full trust-gradient hover:trust-gradient-hover text-xs font-bold transition-all active:scale-95 shadow-lg shadow-[#ccff00]/15"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>Export Statements (PDF / CSV)</span>
@@ -88,7 +88,7 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Search */}
         <div className="relative flex-1">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 transform -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#a09c8f] absolute left-3.5 top-1/2 transform -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search merchant or title..."
@@ -110,10 +110,10 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
             <button
               key={cat.id}
               onClick={() => setFilter(cat.id as any)}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+              className={`px-3.5 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
                 filter === cat.id
-                  ? 'trust-gradient text-white shadow-md shadow-blue-600/20'
-                  : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-white/5'
+                  ? 'trust-gradient shadow-md shadow-[#ccff00]/15'
+                  : 'bg-[#1c180d]/60 text-[#a09c8f] hover:text-[#e8e5dc] border border-white/5'
               }`}
             >
               {cat.label}
@@ -125,7 +125,7 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
       {/* Transaction List */}
       <div className="space-y-2.5">
         {filteredTxs.length === 0 ? (
-          <div className="text-center py-10 bg-slate-950/60 rounded-2xl border border-white/5 text-slate-400 text-xs font-medium">
+          <div className="text-center py-10 bg-black/40 rounded-2xl border border-white/5 text-[#a09c8f] text-xs font-medium">
             No transactions match your search filter.
           </div>
         ) : (
@@ -138,17 +138,17 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
               <div
                 key={tx.id}
                 onClick={() => setSelectedTx(tx)}
-                className="flex items-center justify-between p-4 rounded-2xl bg-slate-950/60 hover:bg-slate-900/80 border border-white/5 hover:border-blue-500/20 transition-all cursor-pointer group shadow-sm"
+                className="flex items-center justify-between p-4 rounded-2xl bg-black/40 hover:bg-[#1c180d]/80 border border-white/5 hover:border-[#ccff00]/25 transition-all cursor-pointer group shadow-sm"
               >
                 <div className="flex items-center gap-3.5">
                   <div className={`p-2.5 rounded-xl border ${badge.color}`}>
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="font-extrabold text-xs text-slate-100 group-hover:text-blue-400 transition-colors">
+                    <p className="font-semibold text-xs text-[#faf7f0] group-hover:text-[#ccff00] transition-colors">
                       {tx.title}
                     </p>
-                    <div className="flex items-center gap-2 text-[11px] text-slate-400 mt-0.5 font-mono">
+                    <div className="flex items-center gap-2 text-[11px] text-[#a09c8f] mt-0.5 font-mono">
                       <span>{tx.date}</span>
                       {tx.cardLastFour && <span>• Card •••• {tx.cardLastFour}</span>}
                     </div>
@@ -157,8 +157,8 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
 
                 <div className="text-right">
                   <p
-                    className={`font-mono font-extrabold text-xs ${
-                      isCredit ? 'text-emerald-400' : 'text-slate-100'
+                    className={`font-mono font-semibold text-xs ${
+                      isCredit ? 'text-[#ccff00]' : 'text-[#faf7f0]'
                     }`}
                   >
                     {isCredit ? '+' : '-'}${tx.amountUsd.toFixed(2)}
@@ -177,59 +177,59 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
 
       {/* Receipt Inspector Modal */}
       {selectedTx && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4">
           <div className="glass-card border border-white/10 rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-4">
             <div className="flex justify-between items-center border-b border-white/10 pb-3">
               <div className="flex items-center gap-2">
-                <Receipt className="w-5 h-5 text-blue-400" />
-                <h3 className="font-extrabold text-sm text-slate-100">Transaction Details</h3>
+                <Receipt className="w-5 h-5 text-[#ccff00]" />
+                <h3 className="font-semibold text-sm text-[#faf7f0]">Transaction Details</h3>
               </div>
               <button
                 onClick={() => setSelectedTx(null)}
-                className="text-slate-400 hover:text-white text-sm font-bold"
+                className="text-[#a09c8f] hover:text-white text-sm font-bold"
               >
                 ✕
               </button>
             </div>
 
-            <div className="text-center py-4 bg-slate-950/80 rounded-2xl border border-white/10">
-              <span className="text-xs text-slate-400 uppercase tracking-wider block mb-1 font-bold">
+            <div className="text-center py-4 bg-black/55 rounded-2xl border border-white/10">
+              <span className="text-xs text-[#a09c8f] uppercase tracking-wider block mb-1 font-bold">
                 Amount Settled
               </span>
-              <span className="text-2xl font-extrabold text-slate-100 font-mono">
+              <span className="text-2xl font-semibold text-[#faf7f0] font-mono">
                 ${selectedTx.amountUsd.toFixed(2)} USD
               </span>
             </div>
 
             <div className="space-y-2.5 text-xs font-mono">
-              <div className="flex justify-between text-slate-400 border-b border-white/5 pb-2">
+              <div className="flex justify-between text-[#a09c8f] border-b border-white/5 pb-2">
                 <span>Merchant/Title:</span>
-                <span className="text-slate-100 font-bold">{selectedTx.title}</span>
+                <span className="text-[#faf7f0] font-bold">{selectedTx.title}</span>
               </div>
-              <div className="flex justify-between text-slate-400 border-b border-white/5 pb-2">
+              <div className="flex justify-between text-[#a09c8f] border-b border-white/5 pb-2">
                 <span>Transaction ID:</span>
-                <span className="text-slate-200">{selectedTx.id}</span>
+                <span className="text-[#e8e5dc]">{selectedTx.id}</span>
               </div>
-              <div className="flex justify-between text-slate-400 border-b border-white/5 pb-2">
+              <div className="flex justify-between text-[#a09c8f] border-b border-white/5 pb-2">
                 <span>Timestamp:</span>
-                <span className="text-slate-200">{selectedTx.date}</span>
+                <span className="text-[#e8e5dc]">{selectedTx.date}</span>
               </div>
-              <div className="flex justify-between text-slate-400 border-b border-white/5 pb-2">
+              <div className="flex justify-between text-[#a09c8f] border-b border-white/5 pb-2">
                 <span>Category:</span>
-                <span className="text-blue-400 font-bold uppercase">{selectedTx.category}</span>
+                <span className="text-[#ccff00] font-bold uppercase">{selectedTx.category}</span>
               </div>
               {selectedTx.cashbackEarnedUsd && (
-                <div className="flex justify-between text-slate-400 border-b border-white/5 pb-2">
+                <div className="flex justify-between text-[#a09c8f] border-b border-white/5 pb-2">
                   <span>Cashback Earned:</span>
                   <span className="text-amber-400 font-bold">
                     +${selectedTx.cashbackEarnedUsd.toFixed(2)}
                   </span>
                 </div>
               )}
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-[#a09c8f]">
                 <span>Status:</span>
-                <span className="text-emerald-400 flex items-center gap-1 font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-[#ccff00] flex items-center gap-1 font-bold">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#ccff00]" />
                   Completed & Verified
                 </span>
               </div>
@@ -237,7 +237,7 @@ export const TransactionHistory: React.FC<TransactionHistoryProps> = ({
 
             <button
               onClick={() => setSelectedTx(null)}
-              className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-bold rounded-xl transition-all border border-white/10"
+              className="w-full py-3 bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] text-xs font-bold rounded-xl transition-all border border-white/10"
             >
               Close Receipt
             </button>

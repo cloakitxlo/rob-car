@@ -553,7 +553,7 @@ export default function App() {
   const userNotices = currentUserAccount?.notices || [];
 
   return (
-    <div className="min-h-screen bg-[#0b0e11] text-[#eaecef] font-sans selection:bg-[#0500ff] selection:text-white">
+    <div className="min-h-screen bg-[#110e08] text-[#e8e5dc] selection:bg-[#ccff00] selection:text-[#110e08]">
       {/* Header Bar */}
       <Header
         authUser={authUser}
@@ -584,31 +584,31 @@ export default function App() {
                         key={notice.id}
                         className={`p-4 rounded-2xl border flex items-start justify-between gap-4 shadow-xl ${
                           notice.type === 'urgent'
-                            ? 'bg-rose-950/60 border-rose-500/40 text-rose-200'
+                            ? 'bg-[#ff5000]/12 border-[#ff5000]/40 text-[#ffb39a]'
                             : notice.type === 'warning'
                             ? 'bg-amber-950/60 border-amber-500/40 text-amber-200'
-                            : 'bg-purple-950/60 border-purple-500/40 text-purple-200'
+                            : 'bg-[#ccff00]/10 border-[#ccff00]/40 text-[#e8e5dc]'
                         }`}
                       >
                         <div className="flex items-start gap-3">
                           <div className="p-2 rounded-xl bg-white/10 mt-0.5">
                             {notice.type === 'urgent' ? (
-                              <AlertTriangle className="w-5 h-5 text-rose-400" />
+                              <AlertTriangle className="w-5 h-5 text-[#ff5000]" />
                             ) : notice.type === 'warning' ? (
                               <AlertTriangle className="w-5 h-5 text-amber-400" />
                             ) : (
-                              <BellRing className="w-5 h-5 text-purple-400" />
+                              <BellRing className="w-5 h-5 text-[#ccff00]" />
                             )}
                           </div>
                           <div className="space-y-1">
                             <div className="flex items-center gap-2">
-                              <h4 className="font-extrabold text-sm text-white">{notice.title}</h4>
-                              <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-white/10 uppercase">
+                              <h4 className="font-semibold text-sm text-white">{notice.title}</h4>
+                              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/10 uppercase">
                                 {notice.issuedBy || 'Super Admin Notice'}
                               </span>
                             </div>
-                            <p className="text-xs text-slate-300 leading-relaxed">{notice.message}</p>
-                            <p className="text-[10px] text-slate-400 font-mono">{notice.createdAt}</p>
+                            <p className="text-xs text-[#e8e5dc] leading-relaxed">{notice.message}</p>
+                            <p className="text-[10px] text-[#a09c8f] font-mono">{notice.createdAt}</p>
                           </div>
                         </div>
                       </div>
@@ -737,16 +737,16 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-white/10 bg-slate-950/80 backdrop-blur-lg py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+      <footer className="border-t border-white/[0.08] bg-black py-8 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#a09c8f]">
           <div className="flex items-center gap-2 font-mono font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse" />
             <span>Robin Card Network v2.4 Active</span>
           </div>
-          <div className="flex gap-6 font-bold text-slate-300">
-            <span className="hover:text-blue-400 cursor-pointer transition-colors">Security Protocol</span>
-            <span className="hover:text-blue-400 cursor-pointer transition-colors">Privacy Notice</span>
-            <span className="hover:text-blue-400 cursor-pointer transition-colors">Card Terms</span>
+          <div className="flex gap-6 font-semibold text-[#e8e5dc]">
+            <span className="hover:text-[#ccff00] cursor-pointer transition-colors duration-300">Security Protocol</span>
+            <span className="hover:text-[#ccff00] cursor-pointer transition-colors duration-300">Privacy Notice</span>
+            <span className="hover:text-[#ccff00] cursor-pointer transition-colors duration-300">Card Terms</span>
           </div>
           <p className="font-medium">© 2026 Robin Card. Demo crypto card infrastructure.</p>
         </div>

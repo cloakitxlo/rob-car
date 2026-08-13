@@ -57,27 +57,27 @@ export const SwapModal: React.FC<SwapModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/55 backdrop-blur-md flex items-center justify-center p-4">
       <div className="glass-card border border-white/10 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-5">
         <div className="flex justify-between items-center border-b border-white/10 pb-4">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20">
+            <div className="p-2 rounded-xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/25">
               <Zap className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-extrabold text-slate-100">Top Up Card Balance</h3>
+            <h3 className="dash-title text-base text-[#faf7f0]">Top Up Card Balance</h3>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-white text-sm font-bold">
+          <button onClick={onClose} className="text-[#a09c8f] hover:text-white text-sm font-bold">
             ✕
           </button>
         </div>
 
         {success ? (
           <div className="text-center py-6 space-y-3">
-            <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
-              <Check className="w-6 h-6 text-emerald-400" />
+            <div className="w-12 h-12 rounded-full bg-[#ccff00]/10 border border-[#ccff00]/30 text-[#ccff00] flex items-center justify-center mx-auto">
+              <Check className="w-6 h-6 text-[#ccff00]" />
             </div>
-            <h4 className="text-base font-extrabold text-slate-100">Card Balance Reloaded!</h4>
-            <p className="text-xs text-slate-400 font-medium">
+            <h4 className="text-base font-semibold text-[#faf7f0]">Card Balance Reloaded!</h4>
+            <p className="text-xs text-[#a09c8f] font-medium">
               Added ${numericUsd.toFixed(2)} USD to your card from {cryptoNeeded.toFixed(4)} {selectedAsset.symbol}.
             </p>
           </div>
@@ -85,7 +85,7 @@ export const SwapModal: React.FC<SwapModalProps> = ({
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Asset Selection */}
             <div>
-              <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-2">
+              <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-2">
                 Source Crypto Asset
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -96,12 +96,12 @@ export const SwapModal: React.FC<SwapModalProps> = ({
                     onClick={() => setSelectedAsset(a)}
                     className={`p-3 rounded-xl border text-left transition-all ${
                       selectedAsset.id === a.id
-                        ? 'bg-blue-600/10 border-blue-500 text-blue-400 font-bold shadow-md'
-                        : 'bg-slate-900/60 border-white/5 text-slate-200 hover:bg-slate-800'
+                        ? 'bg-[#ccff00]/10 border-[#ccff00] text-[#ccff00] font-bold shadow-md'
+                        : 'bg-[#1c180d]/60 border-white/5 text-[#e8e5dc] hover:bg-[#35322d]'
                     }`}
                   >
-                    <div className="font-extrabold text-xs">{a.symbol}</div>
-                    <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                    <div className="font-semibold text-xs">{a.symbol}</div>
+                    <div className="text-[10px] text-[#a09c8f] font-mono mt-0.5">
                       {a.balance.toFixed(2)}
                     </div>
                   </button>
@@ -110,22 +110,22 @@ export const SwapModal: React.FC<SwapModalProps> = ({
             </div>
 
             {/* Input USD Amount */}
-            <div className="bg-slate-950/80 p-4 rounded-2xl border border-white/10 space-y-2">
+            <div className="bg-black/55 p-4 rounded-2xl border border-white/10 space-y-2">
               <div className="flex justify-between items-center text-xs">
-                <span className="text-slate-400 font-bold">Top-up Amount (USD)</span>
-                <span className="text-slate-400 font-mono text-[11px]">
+                <span className="text-[#a09c8f] font-bold">Top-up Amount (USD)</span>
+                <span className="text-[#a09c8f] font-mono text-[11px]">
                   Rate: 1 {selectedAsset.symbol} = ${selectedAsset.priceUsd.toLocaleString()}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-extrabold text-slate-100 font-mono">$</span>
+                <span className="text-2xl font-semibold text-[#faf7f0] font-mono">$</span>
                 <input
                   type="number"
                   value={topupAmountUsd}
                   onChange={(e) => setTopupAmountUsd(e.target.value)}
                   placeholder="250"
-                  className="w-full bg-transparent font-mono text-2xl font-extrabold text-blue-400 focus:outline-none"
+                  className="w-full bg-transparent font-mono text-2xl font-semibold text-[#ccff00] focus:outline-none"
                 />
               </div>
 
@@ -136,7 +136,7 @@ export const SwapModal: React.FC<SwapModalProps> = ({
                     key={preset}
                     type="button"
                     onClick={() => setTopupAmountUsd(preset)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-mono font-bold border border-white/10"
+                    className="px-2.5 py-1 rounded-lg bg-[#1c180d] hover:bg-[#35322d] text-[#e8e5dc] text-xs font-mono font-bold border border-white/10"
                   >
                     ${preset}
                   </button>
@@ -145,21 +145,21 @@ export const SwapModal: React.FC<SwapModalProps> = ({
             </div>
 
             {/* Crypto Deduction Calculation */}
-            <div className="bg-slate-950/40 p-3.5 rounded-2xl border border-white/5 text-xs space-y-1.5 font-mono">
-              <div className="flex justify-between text-slate-400">
+            <div className="bg-black/30 p-3.5 rounded-2xl border border-white/5 text-xs space-y-1.5 font-mono">
+              <div className="flex justify-between text-[#a09c8f]">
                 <span>Crypto Deducted:</span>
-                <span className="text-slate-100 font-bold">
+                <span className="text-[#faf7f0] font-bold">
                   {cryptoNeeded.toFixed(6)} {selectedAsset.symbol}
                 </span>
               </div>
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-[#a09c8f]">
                 <span>Network FX Markup:</span>
-                <span className="text-emerald-400 font-bold">0.00% (Zero Fee)</span>
+                <span className="text-[#ccff00] font-bold">0.00% (Zero Fee)</span>
               </div>
             </div>
 
             {errorMsg && (
-              <p className="text-xs text-rose-400 bg-rose-500/10 p-3 rounded-xl border border-rose-500/20 font-bold">
+              <p className="text-xs text-[#ff5000] bg-[#ff5000]/10 p-3 rounded-xl border border-rose-500/20 font-bold">
                 {errorMsg}
               </p>
             )}
@@ -167,10 +167,10 @@ export const SwapModal: React.FC<SwapModalProps> = ({
             <button
               type="submit"
               disabled={loading || isInsufficient}
-              className={`w-full py-3.5 rounded-xl font-extrabold text-xs transition-all shadow-lg ${
+              className={`w-full py-3.5 rounded-full font-semibold text-xs transition-all shadow-lg ${
                 isInsufficient
-                  ? 'bg-slate-900 text-slate-500 border border-white/5 cursor-not-allowed'
-                  : 'trust-gradient text-white shadow-blue-600/25 active:scale-95'
+                  ? 'bg-[#1c180d] text-[#6a6760] border border-white/5 cursor-not-allowed'
+                  : 'trust-gradient shadow-[#ccff00]/15 active:scale-95'
               }`}
             >
               {loading

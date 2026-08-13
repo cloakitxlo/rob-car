@@ -124,20 +124,20 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
   const statusBadge = (status: SupportTicket['status']) => {
     if (status === 'answered') {
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-emerald-500/15 text-[#ccff00] border border-[#ccff00]/30">
           <CheckCircle2 className="w-3 h-3" /> Replied
         </span>
       );
     }
     if (status === 'closed') {
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-slate-500/15 text-slate-400 border border-slate-500/30">
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-slate-500/15 text-[#a09c8f] border border-slate-500/30">
           Closed
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-amber-500/15 text-amber-400 border border-amber-500/30">
         <Clock className="w-3 h-3" /> Open
       </span>
     );
@@ -146,14 +146,14 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
   return (
     <div className="space-y-6">
       <div className="relative rounded-3xl glass-card border border-white/10 p-6 sm:p-8 shadow-2xl overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#ccff00]/15 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex items-start gap-3">
-          <div className="p-2.5 rounded-2xl bg-blue-600/10 text-blue-400 border border-blue-500/20">
+          <div className="p-2.5 rounded-2xl bg-[#ccff00]/10 text-[#ccff00] border border-[#ccff00]/25">
             <Headphones className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-100">Support Center</h2>
-            <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1">
+            <h2 className="dash-title text-xl sm:text-2xl text-[#faf7f0]">Support Center</h2>
+            <p className="text-xs sm:text-sm text-[#a09c8f] font-medium mt-1">
               Facing an issue? Submit a ticket and our team will reply on the same ticket.
             </p>
           </div>
@@ -166,56 +166,56 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
           className="glass-card border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5"
         >
           <div className="flex items-center gap-2 border-b border-white/10 pb-4">
-            <MessageSquare className="w-4 h-4 text-blue-400" />
-            <h3 className="font-extrabold text-sm text-slate-100">New Support Request</h3>
+            <MessageSquare className="w-4 h-4 text-[#ccff00]" />
+            <h3 className="font-semibold text-sm text-[#faf7f0]">New Support Request</h3>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">
+            <label className="text-[11px] font-semibold text-[#a09c8f] uppercase tracking-wider">
               Full Name
             </label>
             <input
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-white/10 text-sm text-slate-100 focus:outline-none focus:border-blue-500/50"
+              className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-sm text-[#faf7f0] focus:outline-none focus:border-[#ccff00]/50"
               placeholder="Your full name"
               required
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">
+            <label className="text-[11px] font-semibold text-[#a09c8f] uppercase tracking-wider">
               Email ID
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-white/10 text-sm text-slate-100 focus:outline-none focus:border-blue-500/50"
+              className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-sm text-[#faf7f0] focus:outline-none focus:border-[#ccff00]/50"
               placeholder="you@email.com"
               required
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">
+            <label className="text-[11px] font-semibold text-[#a09c8f] uppercase tracking-wider">
               Describe your issue you are facing
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={5}
-              className="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-white/10 text-sm text-slate-100 focus:outline-none focus:border-blue-500/50 resize-y min-h-[120px]"
+              className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-sm text-[#faf7f0] focus:outline-none focus:border-[#ccff00]/50 resize-y min-h-[120px]"
               placeholder="Tell us what went wrong, what you tried, and when it happened..."
               required
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">
+            <label className="text-[11px] font-semibold text-[#a09c8f] uppercase tracking-wider">
               Upload screenshot of error{' '}
-              <span className="text-slate-500 normal-case font-medium">(Optional)</span>
+              <span className="text-[#6a6760] normal-case font-medium">(Optional)</span>
             </label>
             <input
               ref={fileRef}
@@ -228,17 +228,17 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
               <button
                 type="button"
                 onClick={() => fileRef.current?.click()}
-                className="w-full flex items-center justify-center gap-2 px-4 py-4 rounded-xl border border-dashed border-white/15 bg-slate-950/50 text-slate-300 text-xs font-bold hover:border-blue-500/40 hover:text-blue-300 transition-all"
+                className="w-full flex items-center justify-center gap-2 px-4 py-4 rounded-xl border border-dashed border-white/15 bg-[#0a0805]/50 text-[#e8e5dc] text-xs font-bold hover:border-[#ccff00]/40 hover:text-[#ccff00] transition-all"
               >
                 <Upload className="w-4 h-4" />
                 Choose screenshot image
               </button>
             ) : (
-              <div className="rounded-xl border border-white/10 bg-slate-950/60 p-3 space-y-3">
+              <div className="rounded-xl border border-white/10 bg-black/40 p-3 space-y-3">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    <ImageIcon className="w-4 h-4 text-blue-400 shrink-0" />
-                    <span className="text-xs text-slate-300 truncate font-medium">{screenshotName}</span>
+                    <ImageIcon className="w-4 h-4 text-[#ccff00] shrink-0" />
+                    <span className="text-xs text-[#e8e5dc] truncate font-medium">{screenshotName}</span>
                   </div>
                   <button
                     type="button"
@@ -246,7 +246,7 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
                       handleScreenshot(null);
                       if (fileRef.current) fileRef.current.value = '';
                     }}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10"
+                    className="p-1.5 rounded-lg text-[#a09c8f] hover:text-[#ff5000] hover:bg-[#ff5000]/10"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -261,14 +261,14 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
           </div>
 
           {submitError && (
-            <div className="flex items-start gap-2 text-xs text-rose-300 bg-rose-500/10 border border-rose-500/30 rounded-xl px-3 py-2.5">
+            <div className="flex items-start gap-2 text-xs text-[#ff5000] bg-[#ff5000]/10 border border-[#ff5000]/30 rounded-xl px-3 py-2.5">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
               <span>{submitError}</span>
             </div>
           )}
 
           {submitSuccess && (
-            <div className="flex items-center gap-2 text-xs text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-3 py-2.5 font-bold">
+            <div className="flex items-center gap-2 text-xs text-[#ccff00] bg-[#ccff00]/10 border border-[#ccff00]/30 rounded-xl px-3 py-2.5 font-bold">
               <CheckCircle2 className="w-4 h-4" />
               Support ticket submitted successfully.
             </div>
@@ -277,7 +277,7 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
           <button
             type="submit"
             disabled={submitting}
-            className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl trust-gradient hover:trust-gradient-hover text-white text-sm font-extrabold shadow-lg shadow-blue-600/25 disabled:opacity-60 active:scale-[0.99] transition-all"
+            className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-full trust-gradient hover:trust-gradient-hover text-sm font-semibold shadow-lg shadow-[#ccff00]/15 disabled:opacity-60 active:scale-[0.99] transition-all"
           >
             <Send className="w-4 h-4" />
             {submitting ? 'Submitting...' : 'Submit Ticket'}
@@ -287,22 +287,22 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
         <div className="glass-card border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-4">
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div className="flex items-center gap-2">
-              <Ticket className="w-4 h-4 text-blue-400" />
-              <h3 className="font-extrabold text-sm text-slate-100">My Support Tickets</h3>
+              <Ticket className="w-4 h-4 text-[#ccff00]" />
+              <h3 className="font-semibold text-sm text-[#faf7f0]">My Support Tickets</h3>
             </div>
             <button
               type="button"
               onClick={loadTickets}
-              className="text-[11px] font-bold text-blue-400 hover:underline"
+              className="text-[11px] font-bold text-[#ccff00] hover:underline"
             >
               Refresh
             </button>
           </div>
 
           {loadingTickets && tickets.length === 0 ? (
-            <p className="text-xs text-slate-500 py-8 text-center">Loading tickets...</p>
+            <p className="text-xs text-[#6a6760] py-8 text-center">Loading tickets...</p>
           ) : tickets.length === 0 ? (
-            <p className="text-xs text-slate-500 py-8 text-center">
+            <p className="text-xs text-[#6a6760] py-8 text-center">
               No tickets yet. Submit a request and it will appear here.
             </p>
           ) : (
@@ -313,7 +313,7 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
                 return (
                   <div
                     key={ticket.id}
-                    className="rounded-2xl border border-white/10 bg-slate-950/50 overflow-hidden"
+                    className="rounded-2xl border border-white/10 bg-[#0a0805]/50 overflow-hidden"
                   >
                     <button
                       type="button"
@@ -323,13 +323,13 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0 space-y-1">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-[10px] font-mono text-slate-500">{ticket.id}</span>
+                            <span className="text-[10px] font-mono text-[#6a6760]">{ticket.id}</span>
                             {statusBadge(ticket.status)}
                           </div>
-                          <p className="text-xs text-slate-200 font-medium line-clamp-2">
+                          <p className="text-xs text-[#e8e5dc] font-medium line-clamp-2">
                             {ticket.description}
                           </p>
-                          <p className="text-[10px] text-slate-500">
+                          <p className="text-[10px] text-[#6a6760]">
                             {new Date(ticket.createdAt).toLocaleString()}
                             {adminReplies.length > 0
                               ? ` · ${adminReplies.length} admin repl${adminReplies.length > 1 ? 'ies' : 'y'}`
@@ -340,17 +340,17 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
                     </button>
 
                     {open && (
-                      <div className="border-t border-white/10 p-4 space-y-4 bg-slate-950/40">
+                      <div className="border-t border-white/10 p-4 space-y-4 bg-black/30">
                         <div>
-                          <p className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1">
+                          <p className="text-[10px] font-semibold text-[#6a6760] uppercase tracking-wider mb-1">
                             Your issue
                           </p>
-                          <p className="text-xs text-slate-300 whitespace-pre-wrap">{ticket.description}</p>
+                          <p className="text-xs text-[#e8e5dc] whitespace-pre-wrap">{ticket.description}</p>
                         </div>
 
                         {ticket.screenshotDataUrl && (
                           <div>
-                            <p className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-2">
+                            <p className="text-[10px] font-semibold text-[#6a6760] uppercase tracking-wider mb-2">
                               Screenshot
                             </p>
                             <img
@@ -362,26 +362,26 @@ export const SupportDashboard: React.FC<SupportDashboardProps> = ({ authUser }) 
                         )}
 
                         <div className="space-y-2">
-                          <p className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">
+                          <p className="text-[10px] font-semibold text-[#6a6760] uppercase tracking-wider">
                             Conversation
                           </p>
                           {ticket.messages.length === 0 ? (
-                            <p className="text-xs text-slate-500">Waiting for admin reply...</p>
+                            <p className="text-xs text-[#6a6760]">Waiting for admin reply...</p>
                           ) : (
                             ticket.messages.map((msg) => (
                               <div
                                 key={msg.id}
                                 className={`rounded-xl p-3 border text-xs ${
                                   msg.authorRole === 'admin'
-                                    ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-100'
-                                    : 'bg-slate-900/80 border-white/10 text-slate-300'
+                                    ? 'bg-[#ccff00]/10 border-emerald-500/25 text-emerald-100'
+                                    : 'bg-[#1c180d]/80 border-white/10 text-[#e8e5dc]'
                                 }`}
                               >
                                 <div className="flex justify-between gap-2 mb-1">
-                                  <span className="font-extrabold">
+                                  <span className="font-semibold">
                                     {msg.authorRole === 'admin' ? 'Support Admin' : msg.authorName}
                                   </span>
-                                  <span className="text-[10px] text-slate-500">
+                                  <span className="text-[10px] text-[#6a6760]">
                                     {new Date(msg.createdAt).toLocaleString()}
                                   </span>
                                 </div>

@@ -240,52 +240,52 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg glass-card border border-white/10 rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 shadow-2xl space-y-5 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/55 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg glass-card border border-white/10 rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#1c180d] via-[#110e08] to-black shadow-2xl space-y-5 overflow-hidden">
         {/* Glow decoration */}
-        <div className="absolute top-0 right-0 w-56 h-56 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-56 h-56 bg-[#ccff00]/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-2xl trust-gradient text-white shadow-lg shadow-blue-600/30">
+            <div className="p-3 rounded-2xl trust-gradient shadow-lg shadow-[#ccff00]/20">
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-extrabold text-slate-100 text-base">Export Account Statements</h3>
-              <p className="text-xs text-slate-400 font-medium">Generate official PDF or CSV financial statements</p>
+              <h3 className="font-semibold text-[#faf7f0] text-base">Export Account Statements</h3>
+              <p className="text-xs text-[#a09c8f] font-medium">Generate official PDF or CSV financial statements</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-slate-800/60 text-slate-400 hover:text-white transition-all border border-white/10"
+            className="p-2 rounded-full bg-[#35322d]/60 text-[#a09c8f] hover:text-white transition-all border border-white/10"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Statement Summary Card */}
-        <div className="p-4 rounded-2xl bg-slate-950/70 border border-white/10 space-y-3 font-mono text-xs">
-          <div className="flex justify-between items-center text-slate-400 border-b border-white/5 pb-2">
+        <div className="p-4 rounded-2xl bg-black/50 border border-white/10 space-y-3 font-mono text-xs">
+          <div className="flex justify-between items-center text-[#a09c8f] border-b border-white/5 pb-2">
             <span>Cardholder:</span>
-            <span className="text-slate-100 font-bold">{cardHolderName.toUpperCase()}</span>
+            <span className="text-[#faf7f0] font-bold">{cardHolderName.toUpperCase()}</span>
           </div>
-          <div className="flex justify-between items-center text-slate-400 border-b border-white/5 pb-2">
+          <div className="flex justify-between items-center text-[#a09c8f] border-b border-white/5 pb-2">
             <span>Card Number:</span>
-            <span className="text-slate-200">•••• •••• •••• {cardLastFour}</span>
+            <span className="text-[#e8e5dc]">•••• •••• •••• {cardLastFour}</span>
           </div>
           <div className="grid grid-cols-3 gap-2 pt-1 text-center">
-            <div className="p-2 rounded-xl bg-slate-900/80 border border-white/5">
-              <span className="text-[10px] text-slate-400 block uppercase font-sans">Purchases</span>
-              <span className="text-slate-100 font-extrabold">${totalSpent.toFixed(2)}</span>
+            <div className="p-2 rounded-xl bg-[#1c180d]/80 border border-white/5">
+              <span className="text-[10px] text-[#a09c8f] block uppercase font-sans">Purchases</span>
+              <span className="text-[#faf7f0] font-semibold">${totalSpent.toFixed(2)}</span>
             </div>
-            <div className="p-2 rounded-xl bg-slate-900/80 border border-white/5">
-              <span className="text-[10px] text-slate-400 block uppercase font-sans">Top-ups</span>
-              <span className="text-emerald-400 font-extrabold">${totalTopups.toFixed(2)}</span>
+            <div className="p-2 rounded-xl bg-[#1c180d]/80 border border-white/5">
+              <span className="text-[10px] text-[#a09c8f] block uppercase font-sans">Top-ups</span>
+              <span className="text-[#ccff00] font-semibold">${totalTopups.toFixed(2)}</span>
             </div>
-            <div className="p-2 rounded-xl bg-slate-900/80 border border-white/5">
-              <span className="text-[10px] text-slate-400 block uppercase font-sans">Cashback</span>
-              <span className="text-amber-400 font-extrabold">${totalCashback.toFixed(2)}</span>
+            <div className="p-2 rounded-xl bg-[#1c180d]/80 border border-white/5">
+              <span className="text-[10px] text-[#a09c8f] block uppercase font-sans">Cashback</span>
+              <span className="text-amber-400 font-semibold">${totalCashback.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -294,7 +294,7 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
         <div className="space-y-4">
           {/* Select Period */}
           <div>
-            <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1.5">
+            <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1.5">
               Statement Period
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -309,8 +309,8 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
                   onClick={() => setSelectedMonth(period.id)}
                   className={`py-2 px-3 rounded-xl text-xs font-bold transition-all border ${
                     selectedMonth === period.id
-                      ? 'trust-gradient text-white border-blue-500 shadow-md'
-                      : 'bg-slate-900/60 text-slate-400 border-white/10 hover:text-slate-200'
+                      ? 'trust-gradient border-[#ccff00] shadow-md'
+                      : 'bg-[#1c180d]/60 text-[#a09c8f] border-white/10 hover:text-[#e8e5dc]'
                   }`}
                 >
                   {period.label}
@@ -321,7 +321,7 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
 
           {/* Select Format */}
           <div>
-            <label className="text-xs font-extrabold text-slate-300 uppercase tracking-wider block mb-1.5">
+            <label className="text-xs font-semibold text-[#e8e5dc] uppercase tracking-wider block mb-1.5">
               Document Format
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -330,16 +330,16 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
                 onClick={() => setFileFormat('pdf')}
                 className={`p-3 rounded-2xl flex items-center gap-3 border transition-all ${
                   fileFormat === 'pdf'
-                    ? 'bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-600/20'
-                    : 'bg-slate-950/60 border-white/10 text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#ccff00]/15 border-[#ccff00] text-[#110e08] shadow-lg shadow-[#ccff00]/15'
+                    : 'bg-black/40 border-white/10 text-[#a09c8f] hover:text-[#e8e5dc]'
                 }`}
               >
-                <div className={`p-2 rounded-xl ${fileFormat === 'pdf' ? 'trust-gradient text-white' : 'bg-slate-900'}`}>
+                <div className={`p-2 rounded-xl ${fileFormat === 'pdf' ? 'trust-gradient' : 'bg-[#1c180d]'}`}>
                   <FileText className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <span className="font-extrabold text-xs block">Official PDF Statement</span>
-                  <span className="text-[10px] text-slate-400">Branded PDF document</span>
+                  <span className="font-semibold text-xs block">Official PDF Statement</span>
+                  <span className="text-[10px] text-[#a09c8f]">Branded PDF document</span>
                 </div>
               </button>
 
@@ -349,15 +349,15 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
                 className={`p-3 rounded-2xl flex items-center gap-3 border transition-all ${
                   fileFormat === 'csv'
                     ? 'bg-emerald-600/20 border-emerald-500 text-white shadow-lg shadow-emerald-600/20'
-                    : 'bg-slate-950/60 border-white/10 text-slate-400 hover:text-slate-200'
+                    : 'bg-black/40 border-white/10 text-[#a09c8f] hover:text-[#e8e5dc]'
                 }`}
               >
-                <div className={`p-2 rounded-xl ${fileFormat === 'csv' ? 'bg-emerald-600 text-white' : 'bg-slate-900'}`}>
+                <div className={`p-2 rounded-xl ${fileFormat === 'csv' ? 'bg-emerald-600 text-white' : 'bg-[#1c180d]'}`}>
                   <FileSpreadsheet className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <span className="font-extrabold text-xs block">CSV Spreadsheet</span>
-                  <span className="text-[10px] text-slate-400">Excel / Numbers raw data</span>
+                  <span className="font-semibold text-xs block">CSV Spreadsheet</span>
+                  <span className="text-[10px] text-[#a09c8f]">Excel / Numbers raw data</span>
                 </div>
               </button>
             </div>
@@ -365,27 +365,27 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
 
           {/* Additional Preferences */}
           <div className="pt-2 border-t border-white/10 flex items-center justify-between">
-            <span className="text-xs text-slate-300 font-bold">Include Cashback Breakdown</span>
+            <span className="text-xs text-[#e8e5dc] font-bold">Include Cashback Breakdown</span>
             <input
               type="checkbox"
               checked={includeCashback}
               onChange={(e) => setIncludeCashback(e.target.checked)}
-              className="w-4 h-4 rounded border-slate-700 text-blue-600 focus:ring-blue-500 bg-slate-900 cursor-pointer"
+              className="w-4 h-4 rounded border-slate-700 text-[#ccff00] focus:ring-[#ccff00] bg-[#1c180d] cursor-pointer"
             />
           </div>
         </div>
 
         {/* Download Link Success Banner */}
         {downloadSuccessUrl && (
-          <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center justify-between animate-in fade-in">
+          <div className="p-3.5 rounded-2xl bg-[#ccff00]/10 border border-[#ccff00]/30 text-[#ccff00] text-xs font-bold flex items-center justify-between animate-in fade-in">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-[#ccff00] shrink-0" />
               <span className="truncate max-w-[220px]">{generatedFilename} Ready!</span>
             </div>
             <a
               href={downloadSuccessUrl}
               download={generatedFilename}
-              className="px-3 py-1.5 rounded-xl bg-emerald-500 text-slate-950 hover:bg-emerald-400 text-xs font-extrabold flex items-center gap-1.5 shadow-md transition-all active:scale-95"
+              className="px-3 py-1.5 rounded-xl bg-emerald-500 text-slate-950 hover:bg-[#ccff00] text-xs font-semibold flex items-center gap-1.5 shadow-md transition-all active:scale-95"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download File</span>
@@ -398,7 +398,7 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-1/3 py-3 rounded-2xl glass-card text-slate-300 hover:text-white text-xs font-extrabold"
+            className="w-1/3 py-3 rounded-2xl glass-card text-[#e8e5dc] hover:text-white text-xs font-semibold"
           >
             Close
           </button>
@@ -406,7 +406,7 @@ export const ExportStatementModal: React.FC<ExportStatementModalProps> = ({
             type="button"
             onClick={handleExport}
             disabled={isGenerating}
-            className="w-2/3 py-3 rounded-2xl trust-gradient hover:trust-gradient-hover text-white text-xs font-extrabold transition-all shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+            className="w-2/3 py-3 rounded-2xl trust-gradient hover:trust-gradient-hover text-xs font-semibold transition-all shadow-xl shadow-[#ccff00]/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
           >
             {isGenerating ? (
               <>
