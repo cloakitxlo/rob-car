@@ -1,0 +1,6 @@
+{
+  "name": "Robin Card",
+  "description": "Demo Robin Card Web3 debit card management and non-custodial crypto card dashboard.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
