@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-import { createServer as createViteServer } from 'vite';
 import { ConnectedUser, AdminActionLog, SupportTicket } from './src/types.js';
 import { getTRC20AddressForUser } from './src/utils/addressUtils.js';
 import { generateUserCard } from './src/utils/cardUtils.js';
@@ -1054,16 +1053,16 @@ async function startServer() {
     res.json({ success: true, card: cardState, message: `Successfully upgraded to ${tierObj.name}` });
   });
 
-  // Vite Integration
+  // Vite only in local `npm run dev`. Production serves the built dist/ files.
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
     });
     app.use(vite.middlewares);
   } else {
-    // Production: server.cjs and built frontend live together in /dist
-    const distPath = path.join(__dirname);
+    const distPath = path.resolve(__dirname);
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
       if (req.path.startsWith('/api')) {

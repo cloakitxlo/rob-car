@@ -13,66 +13,58 @@ npm run dev
 
 Open http://localhost:3000
 
-## Why hosting shows a blank page
+Admin: `admin` / `SuperAdmin@2026`
 
-This is **not** a static HTML site. Uploading the project folder (or only `index.html`) to normal shared hosting shows a blank page because:
+## Deploy live on Railway (GitHub)
 
-- `index.html` points to React/TypeScript source (`/src/main.tsx`)
-- Login, balances, deposits, and admin need the **Node.js API** (`server.ts`)
+This repo is already set up for Railway. Do **not** upload `node_modules` or `dist` — Railway builds those.
 
-You need **Node.js hosting** (not PHP-only / plain file hosting).
+### 1) Put the project on GitHub
 
-## Deploy on your domain (Node hosting)
-
-Works on: **Railway, Render, VPS, DigitalOcean, Hostinger Node.js, cPanel “Setup Node.js App”**, etc.
-
-### 1) Build
+From this folder:
 
 ```bash
-npm install
-npm run build
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git push -u origin main
 ```
 
-This creates `dist/` with:
+Or create a new GitHub repo and upload/push all project files (keep `.gitignore`).
 
-- `index.html` + `assets/` (frontend)
-- `server.cjs` (backend API)
+### 2) Connect Railway
 
-### 2) Start in production
+1. Open [https://railway.app](https://railway.app) and sign in with GitHub
+2. **New Project** → **Deploy from GitHub repo**
+3. Select this repository
+4. Railway will use the included config:
+   - Build: `npm install --include=optional && npm run build`
+   - Start: `npm start`
+   - Health check: `/api/health`
+   - Node: 20
 
-```bash
-NODE_ENV=production node dist/server.cjs
-```
+No extra environment variables are required for login, dashboard, or admin.
 
-Or:
+### 3) Get your live URL
 
-```bash
-NODE_ENV=production npm start
-```
+1. Open the service → **Settings** → **Networking** → **Generate Domain**
+2. Wait until the deploy is **Success**
+3. Open the `*.up.railway.app` URL — landing page should load (not blank)
 
-### 3) Hosting settings
+### 4) Optional custom domain
+
+In Railway → **Networking** → **Custom Domain**, add your domain and set the DNS record Railway shows.
+
+## Hosting notes
+
+This is **not** a static HTML site. Do not upload only `index.html` to PHP/shared hosting.
 
 | Setting | Value |
 |--------|--------|
-| Start command | `NODE_ENV=production node dist/server.cjs` |
-| Build command | `npm install && npm run build` |
-| Port | Use host `PORT` env (app already reads it) |
-| Node version | 18+ |
+| Build command | `npm install --include=optional && npm run build` |
+| Start command | `npm start` |
+| Port | Railway `PORT` (app already reads it) |
+| Node | 18+ (Railway uses 20) |
 
-### 4) Point your domain
+## Quick test after deploy
 
-In your host/DNS:
-
-- Point domain A record / CNAME to the host they give you
-- Enable HTTPS (Let’s Encrypt)
-
-### Do NOT
-
-- Upload only `index.html` / `src/` to `public_html`
-- Use PHP/static-only hosting for this app
-- Forget `NODE_ENV=production`
-
-### Quick test after deploy
-
-Open your domain → login page should load (not blank).  
+Open the live URL → login page should load.  
 Admin: `admin` / `SuperAdmin@2026`
