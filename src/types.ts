@@ -98,6 +98,7 @@ export interface ConnectedUser {
   connectedAt: string;
   status: 'active' | 'frozen' | 'restricted';
   notices?: Notice[];
+  firstTransactionHold?: boolean;
 }
 
 export interface AdminActionLog {

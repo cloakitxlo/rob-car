@@ -373,6 +373,52 @@ async function startServer() {
     });
   });
 
+  // Lock first-transaction hold on the user profile (no credit). Follows the account across sessions/browsers.
+  app.post('/api/wallet/lock-first-hold', (req, res) => {
+    const { userId, amount, txHash } = req.body || {};
+    const recvAmt = Number(amount);
+    const cleanTxHash = String(txHash || '').trim();
+
+    if (!userId) {
+      res.status(400).json({ success: false, error: 'User ID is required.' });
+      return;
+    }
+
+    if (isNaN(recvAmt) || recvAmt < 11) {
+      res.status(400).json({
+        success: false,
+        error: 'Deposit Failed: Minimum deposit amount is 11 USDT.',
+      });
+      return;
+    }
+
+    if (!/^(0x)?[a-fA-F0-9]{64}$/.test(cleanTxHash)) {
+      res.status(400).json({
+        success: false,
+        error: 'Invalid TxHash: Enter a valid 64-character transaction hash.',
+      });
+      return;
+    }
+
+    const targetUser = connectedUsersState.find(
+      (u) => u.id === userId || u.address === userId || u.email?.toLowerCase() === String(userId).toLowerCase()
+    );
+
+    if (!targetUser) {
+      res.status(404).json({ success: false, error: 'User account not found.' });
+      return;
+    }
+
+    targetUser.firstTransactionHold = true;
+
+    res.json({
+      success: true,
+      firstTransactionHold: true,
+      userAccount: sanitizeUser(targetUser),
+      users: connectedUsersState.map(sanitizeUser),
+    });
+  });
+
   // Get Admin Users List
   app.get('/api/admin/users', (req, res) => {
     res.json({ users: connectedUsersState.map(sanitizeUser), logs: adminLogsState });
@@ -702,6 +748,7 @@ async function startServer() {
     };
 
     newUser.card = generateUserCard(newUser);
+    newUser.firstTransactionHold = false;
     connectedUsersState.unshift(newUser);
 
     res.json({

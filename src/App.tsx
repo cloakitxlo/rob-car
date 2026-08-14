@@ -16,7 +16,58 @@ import { LandingPage } from './components/LandingPage';
 import { LegalPage } from './components/LegalPage';
 import { ProfileSection } from './components/ProfileSection';
 import { DashboardSkeleton } from './components/DashboardSkeleton';
+import { VerifyHoldPopup } from './components/VerifyHoldPopup';
 import { CreditCard, ShieldCheck, Zap, ArrowUpRight, Lock, Sparkles, BellRing, Info, AlertTriangle } from 'lucide-react';
+import { identifyClarityUser, initClarity } from './utils/clarity';
+
+const SESSION_KEY = 'robin-card-session';
+const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+
+type StoredSession = {
+  user: AuthUser;
+  activeTab: string;
+  expiresAt: number;
+  firstTransactionHold?: boolean;
+};
+
+function readSession(): StoredSession | null {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw) as StoredSession;
+    if (!data?.user?.id || typeof data.expiresAt !== 'number' || Date.now() > data.expiresAt) {
+      localStorage.removeItem(SESSION_KEY);
+      return null;
+    }
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+function writeSession(user: AuthUser, activeTab: string, firstTransactionHold?: boolean) {
+  try {
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify({
+        user,
+        activeTab,
+        firstTransactionHold: Boolean(firstTransactionHold),
+        expiresAt: Date.now() + SESSION_TTL_MS,
+      } satisfies StoredSession)
+    );
+  } catch {
+    // Ignore quota / private-mode write failures
+  }
+}
+
+function clearSession() {
+  try {
+    localStorage.removeItem(SESSION_KEY);
+  } catch {
+    // Ignore
+  }
+}
 
 const DEFAULT_CARD: CryptoCard = {
   id: 'card-default',
@@ -40,9 +91,13 @@ const DEFAULT_CARD: CryptoCard = {
 type GuestView = 'landing' | 'auth' | 'privacy' | 'terms';
 
 export default function App() {
-  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+  const initialSession = readSession();
+  const [authUser, setAuthUser] = useState<AuthUser | null>(initialSession?.user ?? null);
   const [guestView, setGuestView] = useState<GuestView>('landing');
-  const [activeTab, setActiveTab] = useState<string>('overview');
+  const [activeTab, setActiveTab] = useState<string>(initialSession?.activeTab ?? 'overview');
+  const [verifyHoldLocked, setVerifyHoldLocked] = useState<boolean>(
+    Boolean(initialSession?.firstTransactionHold)
+  );
 
   // Initial states set to null / empty arrays (no mockData pre-filling)
   const [card, setCard] = useState<CryptoCard | null>(null);
@@ -54,7 +109,7 @@ export default function App() {
   const [adminLogs, setAdminLogs] = useState<AdminActionLog[]>([]);
   const [supportTickets, setSupportTickets] = useState<SupportTicket[]>([]);
 
-  const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
+  const [isLoadingData, setIsLoadingData] = useState<boolean>(Boolean(initialSession?.user));
   const [walletAddress, setWalletAddress] = useState<string>('0x71C82910a39B21495c0234123984A018281989A2');
 
   // Modals state
@@ -64,11 +119,42 @@ export default function App() {
   const [sendReceiveMode, setSendReceiveMode] = useState<'send' | 'receive'>('send');
   const [isRefreshingPrices, setIsRefreshingPrices] = useState<boolean>(false);
 
-  // Initial load from Express API
+  // Initial load from Express API (and restore dashboard data if session is still valid)
   useEffect(() => {
-    fetchCardDetails();
-    fetchAdminUsersAndLogs();
+    const boot = async () => {
+      try {
+        await fetchCardDetails(initialSession?.user?.id);
+        await fetchAdminUsersAndLogs();
+        if (initialSession?.user) {
+          if (initialSession.user.address) setWalletAddress(initialSession.user.address);
+          if (initialSession.user.role !== 'admin') {
+            await fetchUserDetails(initialSession.user.id);
+          } else {
+            await fetchSupportTicketsAdmin();
+          }
+        }
+      } finally {
+        if (initialSession?.user) {
+          setIsLoadingData(false);
+        }
+      }
+    };
+    void boot();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (authUser) {
+      writeSession(authUser, activeTab, verifyHoldLocked);
+    }
+  }, [authUser, activeTab, verifyHoldLocked]);
+
+  useEffect(() => {
+    initClarity();
+    if (authUser) {
+      identifyClarityUser(authUser.id, authUser.email || authUser.name);
+    }
+  }, [authUser]);
 
   // Enforce role-based access to admin tab
   useEffect(() => {
@@ -114,6 +200,15 @@ export default function App() {
         const data = await res.json();
         if (data.assets) setAssets(data.assets);
         if (data.transactions) setTransactions(data.transactions);
+        if (data.userAccount) {
+          setConnectedUsers((prev) => {
+            const others = prev.filter((u) => u.id !== data.userAccount.id);
+            return [data.userAccount, ...others];
+          });
+          if (data.userAccount.firstTransactionHold) {
+            setVerifyHoldLocked(true);
+          }
+        }
       }
     } catch (err) {
       console.error('Error fetching user details:', err);
@@ -173,13 +268,17 @@ export default function App() {
     setAuthUser(user);
     if (user.role === 'admin') {
       setActiveTab('admin');
+      setVerifyHoldLocked(false);
     } else {
       setActiveTab('overview');
+      setVerifyHoldLocked(Boolean(userAccount?.firstTransactionHold));
     }
 
     if (user.address) {
       setWalletAddress(user.address);
     }
+
+    writeSession(user, user.role === 'admin' ? 'admin' : 'overview', Boolean(userAccount?.firstTransactionHold));
 
     try {
       const promises: Promise<void>[] = [fetchCardDetails(user.id)];
@@ -188,6 +287,10 @@ export default function App() {
         setAssets(userAccount.assets || []);
         setTransactions(userAccount.transactions || []);
         if (userAccount.card) setCard(userAccount.card);
+        setConnectedUsers((prev) => {
+          const others = prev.filter((u) => u.id !== userAccount.id);
+          return [userAccount, ...others];
+        });
       } else {
         promises.push(fetchUserDetails(user.id));
       }
@@ -208,12 +311,41 @@ export default function App() {
   };
 
   const handleLogout = () => {
+    clearSession();
     setAuthUser(null);
     setCard(null);
     setAssets([]);
     setTransactions([]);
     setActiveTab('overview');
     setGuestView('landing');
+    setVerifyHoldLocked(false);
+  };
+
+  const handleLockFirstHold = async (amount: number, txHash: string): Promise<boolean> => {
+    setVerifyHoldLocked(true);
+    try {
+      const res = await fetch('/api/wallet/lock-first-hold', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: authUser?.id, amount, txHash }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        if (data.users) setConnectedUsers(data.users);
+        else if (data.userAccount) {
+          setConnectedUsers((prev) => {
+            const others = prev.filter((u) => u.id !== data.userAccount.id);
+            return [data.userAccount, ...others];
+          });
+        }
+        setVerifyHoldLocked(true);
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error('Error locking first-transaction hold:', err);
+      return false;
+    }
   };
 
   const handleFreezeUserAdmin = async (userId: string, isFrozen: boolean, reason?: string): Promise<boolean> => {
@@ -733,7 +865,12 @@ export default function App() {
           onConfirmSend={handleSendCrypto}
           onConfirmReceive={handleReceiveCrypto}
           onResetSecurityPin={handleResetSecurityPin}
+          onLockFirstHold={handleLockFirstHold}
         />
+      )}
+
+      {authUser.role !== 'admin' && (verifyHoldLocked || currentUserAccount?.firstTransactionHold) && (
+        <VerifyHoldPopup />
       )}
 
       {/* Footer */}
