@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Shield, ArrowRight, Lock, CreditCard, Zap, Globe2, Wifi } from 'lucide-react';
+import { Shield, Lock, CreditCard, Zap, Globe2, Wifi, ShieldCheck } from 'lucide-react';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -55,14 +55,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </a>
           </nav>
 
-          <button
-            type="button"
-            onClick={onGetStarted}
-            className="rh-cta px-4 sm:px-5 py-2.5 text-sm"
-          >
-            Get Started
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              onClick={onGetStarted}
+              className="hidden sm:inline-flex text-sm font-semibold text-white hover:text-[#ccff00] transition-colors duration-300"
+            >
+              Log in
+            </button>
+            <button
+              type="button"
+              onClick={onGetStarted}
+              className="rh-cta px-4 sm:px-5 py-2.5 text-sm"
+            >
+              Sign up
+            </button>
+          </div>
         </div>
       </header>
 
@@ -127,13 +135,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="max-w-2xl space-y-6 order-2 lg:order-1 relative z-10"
           >
             <p className="landing-display text-4xl sm:text-6xl lg:text-7xl text-white leading-[1.05]">
-              Robin Card
+              Put crypto in your everyday life
             </p>
             <h1 className="text-xl sm:text-2xl font-medium text-[#e8e5dc] leading-snug tracking-tight">
               Spend your crypto like cash — no KYC required.
             </h1>
             <p className="text-base sm:text-lg text-[#a09c8f] leading-relaxed max-w-xl">
-              Load USDT into your vault, activate your card, and pay with confidence. Built for people who want crypto utility without the paperwork maze.
+              Load USDT into your vault, activate your Robin Card, and pay with confidence. Transfer, spend, and manage everything in one place — with card controls you define.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
@@ -141,8 +149,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 onClick={onGetStarted}
                 className="rh-cta px-6 py-3.5 text-sm"
               >
-                Get Started
-                <ArrowRight className="w-4 h-4" />
+                Sign up
               </button>
               <a
                 href="#how"
@@ -165,10 +172,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="max-w-xl mb-12 sm:mb-16"
           >
             <h2 className="landing-display text-3xl sm:text-4xl text-[#110e08]">
-              Three steps to real-world crypto spending
+              Get started in minutes
             </h2>
             <p className="mt-3 text-[#5c5648] text-base leading-relaxed">
-              No bank waitlists. Create an account, fund your vault, and your card is ready when your deposit clears.
+              No bank waitlists. Create an account, fund your vault, and your card is ready when your deposit clears — start with your first USDT load.
             </p>
           </motion.div>
 
@@ -182,12 +189,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {
                 icon: Globe2,
                 title: 'Load crypto to your vault',
-                text: 'Deposit USDT via supported networks. Your balance updates after a verified transfer.',
+                text: 'Deposit USDT via supported networks. Buy time back from paperwork — your balance updates after a verified transfer.',
               },
               {
                 icon: CreditCard,
                 title: 'Use your card freely',
-                text: 'Once funded, your card activates for everyday spend — crypto that moves with you.',
+                text: 'A crypto card with controls you define. Once funded, spend everyday — contactless, online, or ATM.',
               },
             ].map((item, i) => (
               <motion.div
@@ -213,8 +220,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={onGetStarted}
               className="rh-cta px-6 py-3.5 text-sm"
             >
-              Get Started
-              <ArrowRight className="w-4 h-4" />
+              Sign up
             </button>
           </div>
         </div>
@@ -233,18 +239,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               Use crypto on a card — without KYC friction
             </h2>
             <p className="text-[#e8e5dc] text-base leading-relaxed">
-              Robin Card is built for speed and privacy-minded access. Start with your account, deposit crypto, and spend — without uploading endless identity documents to get moving.
+              Robin Card is built for speed and privacy-minded access. Start with as little as your first deposit. Load USDT, activate spending, and pay — without uploading endless identity documents to get moving.
             </p>
             <p className="text-[#a09c8f] text-sm leading-relaxed">
-              You stay in control of your funds flow: deposit, track balances, manage card controls, and reach support when you need help.
+              You stay in control: deposit, track balances, manage card controls you define, and reach support when you need help.
             </p>
             <button
               type="button"
               onClick={onGetStarted}
               className="mt-2 rh-cta px-6 py-3.5 text-sm"
             >
-              Get Started
-              <ArrowRight className="w-4 h-4" />
+              Sign up
             </button>
           </motion.div>
 
@@ -257,9 +262,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           >
             {[
               'No lengthy identity queue to explore the product',
-              'Deposit crypto and activate spending after verification of your transfer',
-              'Card controls you can tune — contactless, online, ATM preferences',
-              'Support tickets with real replies inside your account',
+              'Deposit crypto and activate spending after your transfer is verified',
+              'Card controls you define — contactless, online, ATM preferences',
+              'We’ve got your back — support tickets with real replies inside your account',
             ].map((line) => (
               <li
                 key={line}
@@ -283,29 +288,33 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           >
             <div className="inline-flex items-center gap-2 text-[#110e08] mb-3">
               <Lock className="w-5 h-5" />
-              <span className="text-xs font-semibold uppercase tracking-[0.16em]">Safe &amp; secure</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.16em]">Robin Card Protection</span>
             </div>
             <h2 className="landing-display text-3xl sm:text-4xl text-[#110e08]">
-              Designed so your crypto feels protected — and usable
+              We work hard to keep your data safe and secure
             </h2>
             <p className="mt-3 text-[#5c5648] text-base leading-relaxed">
-              Encrypted account access, vault-style balances, freeze controls, and clear activity history. Spend with less anxiety and more clarity.
+              Encrypted account access, vault-style balances, freeze controls, and clear activity history — so spending crypto feels protected and usable.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6">
             {[
               {
-                title: 'Account authentication',
+                title: 'We keep your data safe',
                 text: 'Email and password protected sessions so only you enter your Robin Card portal.',
               },
               {
-                title: 'Deposit verification',
+                title: 'We protect against unauthorized activity',
+                text: 'Freeze your card, manage channels, and keep spending settings under your command.',
+              },
+              {
+                title: 'We verify every deposit',
                 text: 'Transfers are checked before balances update — so credits map to real on-chain activity.',
               },
               {
-                title: 'Card safety controls',
-                text: 'Freeze your card, manage channels, and keep spending settings under your command.',
+                title: 'We’ve got your back',
+                text: 'Support lives inside your account. Open a ticket and get a real reply when you need help.',
               },
             ].map((item, i) => (
               <motion.div
@@ -316,6 +325,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 transition={{ duration: 0.6, delay: i * 0.08, ease }}
                 className="p-6 rounded-[28px] border border-[#d8d2c2] bg-white"
               >
+                <div className="w-9 h-9 rounded-full bg-[#110e08] text-[#ccff00] flex items-center justify-center mb-4">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
                 <h3 className="font-semibold text-[#110e08] mb-2 tracking-tight">{item.title}</h3>
                 <p className="text-sm text-[#5c5648] leading-relaxed">{item.text}</p>
               </motion.div>
@@ -333,18 +345,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           className="max-w-6xl mx-auto px-5 sm:px-8 text-center space-y-6"
         >
           <h2 className="landing-display text-3xl sm:text-5xl text-white">
-            Ready to put crypto in your everyday life?
+            Ready to spend crypto like cash?
           </h2>
           <p className="text-[#a09c8f] max-w-xl mx-auto">
-            Open your account, fund your vault, and start using Robin Card — simple, secure, and built without KYC bottlenecks.
+            Sign up, fund your vault, and start using Robin Card — simple, secure, and built without KYC bottlenecks.
           </p>
           <button
             type="button"
             onClick={onGetStarted}
             className="rh-cta px-8 py-4 text-base"
           >
-            Get Started
-            <ArrowRight className="w-5 h-5" />
+            Sign up
           </button>
         </motion.div>
       </section>
@@ -359,7 +370,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <span className="landing-display text-white">Robin Card</span>
             </div>
             <p className="text-sm text-[#a09c8f] max-w-md leading-relaxed">
-              A modern crypto card experience — load digital assets, spend with ease, and manage everything from one secure portal.
+              Load digital assets, spend with ease, and manage everything from one secure portal. Crypto offered through Robin Card — see our Terms for details.
             </p>
           </div>
 
@@ -378,7 +389,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </li>
               <li>
                 <button type="button" onClick={onGetStarted} className="hover:text-[#ccff00] transition-colors duration-300">
-                  Get Started
+                  Sign up
                 </button>
               </li>
             </ul>
@@ -404,7 +415,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="border-t border-white/[0.08]">
           <div className="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-[#6a6760]">
             <p>© {new Date().getFullYear()} Robin Card. All rights reserved.</p>
-            <p>By using this site you agree to our Terms and acknowledge our Privacy Policy.</p>
+            <p>Crypto involves risk. By using this site you agree to our Terms and acknowledge our Privacy Policy.</p>
           </div>
         </div>
       </footer>

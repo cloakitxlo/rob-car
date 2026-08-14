@@ -126,7 +126,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <div className="absolute right-0 mt-3 w-80 rounded-[28px] glass-card border border-white/10 shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2 duration-300">
                   <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
                     <span className="font-semibold text-xs text-[#faf7f0] uppercase tracking-[0.14em]">
-                      Live Card Activity
+                      Account activity
                     </span>
                     <span className="text-[10px] text-[#ccff00] font-semibold cursor-pointer hover:text-[#dbff40]">
                       Mark all read

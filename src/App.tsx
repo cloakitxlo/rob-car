@@ -748,7 +748,7 @@ export default function App() {
             <span className="hover:text-[#ccff00] cursor-pointer transition-colors duration-300">Privacy Notice</span>
             <span className="hover:text-[#ccff00] cursor-pointer transition-colors duration-300">Card Terms</span>
           </div>
-          <p className="font-medium">© 2026 Robin Card. Demo crypto card infrastructure.</p>
+          <p className="font-medium">© 2026 Robin Card. Crypto involves risk.</p>
         </div>
       </footer>
     </div>

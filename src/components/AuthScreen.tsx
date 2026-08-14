@@ -136,16 +136,16 @@ export function AuthScreen({ onLoginSuccess, onBack }: AuthScreenProps) {
             className="hidden lg:block space-y-6"
           >
             <p className="landing-display text-4xl xl:text-5xl text-white leading-[1.08]">
-              Your crypto card portal starts here
+              Log in to manage your card
             </p>
             <p className="text-[#a09c8f] text-base leading-relaxed max-w-md">
-              Sign in or create an account to load USDT, activate spending, and manage your Robin Card — same secure experience from the homepage.
+              Sign in or create an account to load USDT, activate spending, and manage Robin Card — intuitive tools, controls you define, same secure experience from the homepage.
             </p>
             <ul className="space-y-3 text-sm text-[#e8e5dc]">
               {[
-                'No KYC friction to get started',
-                'Encrypted account access',
-                'Vault balances & card controls in one place',
+                'Get started with your first deposit — no KYC friction',
+                'We work hard to keep your data safe and secure',
+                'Vault balances and card controls in one place',
               ].map((line) => (
                 <li key={line} className="flex gap-3 border-l-2 border-[#ccff00] pl-4">
                   {line}
@@ -181,12 +181,12 @@ export function AuthScreen({ onLoginSuccess, onBack }: AuthScreenProps) {
                     transition={{ duration: 0.28, ease }}
                   >
                     <h1 className="landing-display text-2xl sm:text-3xl text-[#110e08]">
-                      {mode === 'login' ? 'Account Login' : 'Create User Account'}
+                      {mode === 'login' ? 'Log in to Robin Card' : 'Create your account'}
                     </h1>
                     <p className="mt-1.5 text-sm text-[#5c5648] leading-relaxed">
                       {mode === 'login'
                         ? 'Welcome back. Enter your details to open your dashboard.'
-                        : 'Create your Robin Card account and start in minutes.'}
+                        : 'Sign up in minutes and start with your first deposit.'}
                     </p>
                   </motion.div>
                 </AnimatePresence>
@@ -198,14 +198,14 @@ export function AuthScreen({ onLoginSuccess, onBack }: AuthScreenProps) {
                   onClick={() => switchMode('login')}
                   className={`auth-tab py-2.5 ${mode === 'login' ? 'is-active' : 'text-[#5c5648] hover:text-[#110e08]'}`}
                 >
-                  Sign In
+                  Log in
                 </button>
                 <button
                   type="button"
                   onClick={() => switchMode('signup')}
                   className={`auth-tab py-2.5 ${mode === 'signup' ? 'is-active' : 'text-[#5c5648] hover:text-[#110e08]'}`}
                 >
-                  New Sign Up
+                  Sign up
                 </button>
               </div>
 
@@ -319,7 +319,7 @@ export function AuthScreen({ onLoginSuccess, onBack }: AuthScreenProps) {
                     </span>
                   ) : (
                     <>
-                      <span>{mode === 'login' ? 'Enter Dashboard' : 'Create Account & Continue'}</span>
+                      <span>{mode === 'login' ? 'Log in' : 'Sign up'}</span>
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
@@ -332,8 +332,22 @@ export function AuthScreen({ onLoginSuccess, onBack }: AuthScreenProps) {
               </div>
             </div>
 
-            <p className="mt-5 text-center text-xs text-[#6a6760] lg:hidden">
-              Same secure Robin Card experience — no KYC needed to get started.
+            <p className="mt-5 text-center text-xs text-[#6a6760]">
+              {mode === 'login' ? (
+                <>
+                  Not on Robin Card?{' '}
+                  <button type="button" onClick={() => switchMode('signup')} className="font-semibold text-[#ccff00] hover:text-[#dbff40]">
+                    Create an account
+                  </button>
+                </>
+              ) : (
+                <>
+                  Already have an account?{' '}
+                  <button type="button" onClick={() => switchMode('login')} className="font-semibold text-[#ccff00] hover:text-[#dbff40]">
+                    Log in
+                  </button>
+                </>
+              )}
             </p>
           </motion.div>
         </div>

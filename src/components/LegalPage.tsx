@@ -49,7 +49,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             onClick={onGetStarted}
             className="text-sm font-semibold text-[#ccff00] hover:text-[#dbff40] transition-colors duration-300"
           >
-            Get Started
+            Sign up
           </button>
         </div>
       </header>
@@ -73,7 +73,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             Terms &amp; Conditions
           </button>
           <button type="button" onClick={onGetStarted} className="font-semibold text-white hover:text-[#ccff00]">
-            Get Started
+            Sign up
           </button>
         </div>
       </main>

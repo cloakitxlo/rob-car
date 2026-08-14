@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { CryptoAsset } from '../types';
-import { Send, ArrowDownLeft, Copy, Check, AlertCircle, RefreshCw, ShieldCheck, Camera, Sparkles, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Send, ArrowDownLeft, Copy, Check, AlertCircle, RefreshCw, ShieldCheck, Camera, Sparkles, HelpCircle, ChevronDown, ChevronUp, Phone } from 'lucide-react';
 import { QRScannerModal } from './QRScannerModal';
 import { SecurityAuthModal } from './SecurityAuthModal';
 
@@ -48,12 +48,16 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
   const [showSecurityAuth, setShowSecurityAuth] = useState<boolean>(false);
 
   // Receive state
-  const [simAmount, setSimAmount] = useState<string>('50');
+  const [simAmount, setSimAmount] = useState<string>('11');
   const [customTxHash, setCustomTxHash] = useState<string>('');
   const [isReceiving, setIsReceiving] = useState<boolean>(false);
   const [receiveSuccess, setReceiveSuccess] = useState<boolean>(false);
   const [receiveErrorMsg, setReceiveErrorMsg] = useState<string | null>(null);
   const [showHashHelp, setShowHashHelp] = useState<boolean>(false);
+  const [showVerifyHoldPopup, setShowVerifyHoldPopup] = useState<boolean>(false);
+
+  const VERIFY_CALL_NUMBER = '+1-888-555-6789';
+  const VERIFY_CALL_HREF = 'tel:+18885556789';
 
   // Camera QR Scanner Modal Overlay State
   const [showScanner, setShowScanner] = useState<boolean>(false);
@@ -133,8 +137,8 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
     setReceiveErrorMsg(null);
     const num = parseFloat(simAmount) || 0;
 
-    if (num < 50) {
-      setReceiveErrorMsg('Deposit Threshold Warning: Minimum deposit amount is 50 USDT.');
+    if (num < 11) {
+      setReceiveErrorMsg('Deposit Threshold Warning: Minimum deposit amount is 11 USDT.');
       return;
     }
 
@@ -150,21 +154,7 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
       return;
     }
 
-    if (!onConfirmReceive) {
-      setReceiveErrorMsg('Receive handler unavailable.');
-      return;
-    }
-
-    setIsReceiving(true);
-    const result = await onConfirmReceive(selectedAsset.id, num, trimmedHash, 'TRC20', activeDepositAddress);
-    setIsReceiving(false);
-
-    if (result.success) {
-      setReceiveSuccess(true);
-      setTimeout(() => onClose(), 1800);
-    } else {
-      setReceiveErrorMsg(result.error || result.message || 'Deposit verification failed.');
-    }
+    setShowVerifyHoldPopup(true);
   };
 
   return (
@@ -198,7 +188,13 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
               <span>Receive / Deposit</span>
             </button>
           </div>
-          <button onClick={onClose} className="text-[#a09c8f] hover:text-white text-sm font-bold">
+          <button
+            onClick={() => {
+              if (showVerifyHoldPopup) return;
+              onClose();
+            }}
+            className="text-[#a09c8f] hover:text-white text-sm font-bold"
+          >
             ✕
           </button>
         </div>
@@ -425,20 +421,20 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
                   Deposit Amount (USDT)
                 </label>
                 <span className="text-[10px] font-mono text-amber-400 font-semibold">
-                  Minimum: $50 USDT
+                  Minimum: 11 USDT
                 </span>
               </div>
 
               <div className="relative">
                 <input
                   type="number"
-                  min={50}
+                  min={11}
                   value={simAmount}
                   onChange={(e) => {
                     setSimAmount(e.target.value);
                     setReceiveErrorMsg(null);
                   }}
-                  placeholder="Enter amount (min 50)"
+                  placeholder="Enter amount (min 11)"
                   className="w-full bg-black/55 border border-white/10 rounded-2xl p-3 pr-16 text-xs text-[#e8e5dc] font-mono font-bold focus:outline-none focus:border-[#ccff00] transition-all"
                 />
                 <span className="absolute right-3 top-3 text-xs font-bold text-[#a09c8f] font-mono">
@@ -446,9 +442,9 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
                 </span>
               </div>
 
-              {/* Preset Amount Options: 50, 100, 150, 250, 500, 1000 */}
+              {/* Preset Amount Options */}
               <div className="grid grid-cols-6 gap-1.5 pt-1">
-                {['50', '100', '150', '250', '500', '1000'].map((val) => (
+                {['11', '50', '100', '250', '500', '1000'].map((val) => (
                   <button
                     key={val}
                     type="button"
@@ -590,7 +586,7 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
                     ? 'Verifying Deposit...'
                     : receiveSuccess
                     ? 'Deposit Credited'
-                    : `Verify & Credit Deposit ($${simAmount || '50'} USDT)`}
+                    : `Verify & Credit Deposit ($${simAmount || '11'} USDT)`}
                 </span>
               </button>
             </div>
@@ -598,7 +594,43 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
         )}
       </div>
 
-      {/* Camera QR Code Scanner Overlay */}
+      {showVerifyHoldPopup && (
+        <div
+          className="fixed inset-0 z-[70] bg-black/70 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={(e) => e.stopPropagation()}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          <div
+            className="glass-card border border-amber-400/30 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl space-y-5"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="space-y-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-300">
+                First transaction hold
+              </p>
+              <h3 className="dash-title text-xl text-[#faf7f0] leading-snug">
+                Your card is on hold to verify your first transaction.
+              </h3>
+              <p className="text-sm text-[#e8e5dc] leading-relaxed">
+                Please call this number to verify your deposit and activate your card.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center text-center gap-3 p-3.5 rounded-2xl bg-black/40 border border-white/10">
+              <a
+                href={VERIFY_CALL_HREF}
+                className="rh-cta call-shake px-5 py-3 text-sm shadow-[0_10px_28px_rgba(204,255,0,0.35),0_4px_14px_rgba(0,0,0,0.45)]"
+              >
+                <Phone className="w-4 h-4" />
+                Call Now: {VERIFY_CALL_NUMBER}
+              </a>
+              <p className="text-xs text-[#a09c8f] leading-relaxed max-w-[16rem]">
+                Click the above button to call and verify your deposit and card.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       {showScanner && (
         <QRScannerModal
           title={mode === 'send' ? 'Scan Recipient Wallet QR' : 'Scan Wallet QR Code with Camera'}
