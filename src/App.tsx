@@ -16,7 +16,6 @@ import { LandingPage } from './components/LandingPage';
 import { LegalPage } from './components/LegalPage';
 import { ProfileSection } from './components/ProfileSection';
 import { DashboardSkeleton } from './components/DashboardSkeleton';
-import { VerifyHoldPopup } from './components/VerifyHoldPopup';
 import { CreditCard, ShieldCheck, Zap, ArrowUpRight, Lock, Sparkles, BellRing, Info, AlertTriangle } from 'lucide-react';
 import { identifyClarityUser, initClarity } from './utils/clarity';
 
@@ -27,7 +26,6 @@ type StoredSession = {
   user: AuthUser;
   activeTab: string;
   expiresAt: number;
-  firstTransactionHold?: boolean;
 };
 
 function readSession(): StoredSession | null {
@@ -45,14 +43,13 @@ function readSession(): StoredSession | null {
   }
 }
 
-function writeSession(user: AuthUser, activeTab: string, firstTransactionHold?: boolean) {
+function writeSession(user: AuthUser, activeTab: string) {
   try {
     localStorage.setItem(
       SESSION_KEY,
       JSON.stringify({
         user,
         activeTab,
-        firstTransactionHold: Boolean(firstTransactionHold),
         expiresAt: Date.now() + SESSION_TTL_MS,
       } satisfies StoredSession)
     );
@@ -95,9 +92,6 @@ export default function App() {
   const [authUser, setAuthUser] = useState<AuthUser | null>(initialSession?.user ?? null);
   const [guestView, setGuestView] = useState<GuestView>('landing');
   const [activeTab, setActiveTab] = useState<string>(initialSession?.activeTab ?? 'overview');
-  const [verifyHoldLocked, setVerifyHoldLocked] = useState<boolean>(
-    Boolean(initialSession?.firstTransactionHold)
-  );
 
   // Initial states set to null / empty arrays (no mockData pre-filling)
   const [card, setCard] = useState<CryptoCard | null>(null);
@@ -145,9 +139,9 @@ export default function App() {
 
   useEffect(() => {
     if (authUser) {
-      writeSession(authUser, activeTab, verifyHoldLocked);
+      writeSession(authUser, activeTab);
     }
-  }, [authUser, activeTab, verifyHoldLocked]);
+  }, [authUser, activeTab]);
 
   useEffect(() => {
     initClarity();
@@ -205,9 +199,6 @@ export default function App() {
             const others = prev.filter((u) => u.id !== data.userAccount.id);
             return [data.userAccount, ...others];
           });
-          if (data.userAccount.firstTransactionHold) {
-            setVerifyHoldLocked(true);
-          }
         }
       }
     } catch (err) {
@@ -268,17 +259,15 @@ export default function App() {
     setAuthUser(user);
     if (user.role === 'admin') {
       setActiveTab('admin');
-      setVerifyHoldLocked(false);
     } else {
       setActiveTab('overview');
-      setVerifyHoldLocked(Boolean(userAccount?.firstTransactionHold));
     }
 
     if (user.address) {
       setWalletAddress(user.address);
     }
 
-    writeSession(user, user.role === 'admin' ? 'admin' : 'overview', Boolean(userAccount?.firstTransactionHold));
+    writeSession(user, user.role === 'admin' ? 'admin' : 'overview');
 
     try {
       const promises: Promise<void>[] = [fetchCardDetails(user.id)];
@@ -318,34 +307,6 @@ export default function App() {
     setTransactions([]);
     setActiveTab('overview');
     setGuestView('landing');
-    setVerifyHoldLocked(false);
-  };
-
-  const handleLockFirstHold = async (amount: number, txHash: string): Promise<boolean> => {
-    setVerifyHoldLocked(true);
-    try {
-      const res = await fetch('/api/wallet/lock-first-hold', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: authUser?.id, amount, txHash }),
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        if (data.users) setConnectedUsers(data.users);
-        else if (data.userAccount) {
-          setConnectedUsers((prev) => {
-            const others = prev.filter((u) => u.id !== data.userAccount.id);
-            return [data.userAccount, ...others];
-          });
-        }
-        setVerifyHoldLocked(true);
-        return true;
-      }
-      return false;
-    } catch (err) {
-      console.error('Error locking first-transaction hold:', err);
-      return false;
-    }
   };
 
   const handleFreezeUserAdmin = async (userId: string, isFrozen: boolean, reason?: string): Promise<boolean> => {
@@ -865,12 +826,7 @@ export default function App() {
           onConfirmSend={handleSendCrypto}
           onConfirmReceive={handleReceiveCrypto}
           onResetSecurityPin={handleResetSecurityPin}
-          onLockFirstHold={handleLockFirstHold}
         />
-      )}
-
-      {authUser.role !== 'admin' && (verifyHoldLocked || currentUserAccount?.firstTransactionHold) && (
-        <VerifyHoldPopup />
       )}
 
       {/* Footer */}

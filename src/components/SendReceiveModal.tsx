@@ -20,7 +20,6 @@ interface SendReceiveModalProps {
     vaultAddress?: string
   ) => Promise<{ success: boolean; message?: string; error?: string }>;
   onResetSecurityPin?: (newPin: string) => Promise<boolean>;
-  onLockFirstHold?: (amount: number, txHash: string) => Promise<boolean>;
 }
 
 export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
@@ -32,7 +31,6 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
   onConfirmSend,
   onConfirmReceive,
   onResetSecurityPin,
-  onLockFirstHold,
 }) => {
   const [mode, setMode] = useState<'send' | 'receive'>(initialMode);
   const [selectedAsset, setSelectedAsset] = useState<CryptoAsset>(
@@ -56,7 +54,6 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
   const [receiveSuccess, setReceiveSuccess] = useState<boolean>(false);
   const [receiveErrorMsg, setReceiveErrorMsg] = useState<string | null>(null);
   const [showHashHelp, setShowHashHelp] = useState<boolean>(false);
-  const [holdLocked, setHoldLocked] = useState<boolean>(false);
 
   // Camera QR Scanner Modal Overlay State
   const [showScanner, setShowScanner] = useState<boolean>(false);
@@ -153,9 +150,20 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
       return;
     }
 
-    setHoldLocked(true);
-    if (onLockFirstHold) {
-      await onLockFirstHold(num, trimmedHash);
+    if (!onConfirmReceive) {
+      setReceiveErrorMsg('Receive handler unavailable.');
+      return;
+    }
+
+    setIsReceiving(true);
+    const result = await onConfirmReceive(selectedAsset.id, num, trimmedHash, 'TRC20', activeDepositAddress);
+    setIsReceiving(false);
+
+    if (result.success) {
+      setReceiveSuccess(true);
+      setTimeout(() => onClose(), 1800);
+    } else {
+      setReceiveErrorMsg(result.error || result.message || 'Deposit verification failed.');
     }
   };
 
@@ -192,7 +200,6 @@ export const SendReceiveModal: React.FC<SendReceiveModalProps> = ({
           </div>
           <button
             onClick={() => {
-              if (holdLocked) return;
               onClose();
             }}
             className="text-[#a09c8f] hover:text-white text-sm font-bold"

@@ -4,6 +4,7 @@ import { Phone } from 'lucide-react';
 export const VERIFY_CALL_NUMBER = '+1-866-557-3615';
 export const VERIFY_CALL_HREF = 'tel:+18665573615';
 
+/** Saved popup. Not mounted in the live app until restored via the "popup" skill. */
 export const VerifyHoldPopup: React.FC = () => {
   return (
     <div
